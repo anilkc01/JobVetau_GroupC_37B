@@ -9,20 +9,23 @@ package Model;
  *
  * @author thismac
  */
-public class SeekerData {
+public class userData {
     private int id;
     private String name;
     private String username;
-    private Long number;
+    private String number;
     private String email;
+    private String address;
+    private String role;
     private String password;
 
-    public SeekerData(int id, String name, String username, Long number, String email, String password) {
-        this.id = id;
+    public userData( String name, String username, String number, String email, String address,String role, String password) {
         this.name = name;
         this.username = username;
         this.number = number;
         this.email = email;
+        this.address = address;
+        this.role = role;
         this.password = password;
     }
 
@@ -50,11 +53,11 @@ public class SeekerData {
         this.username = username;
     }
 
-    public Long getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(Long number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
@@ -64,6 +67,22 @@ public class SeekerData {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getPassword() {

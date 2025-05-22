@@ -5,7 +5,9 @@
  */
 package jobvetau_groupc_37b;
 
+import Controller.signUpController;
 import Database.*;
+import View.Registration;
 
 /**
  *
@@ -17,12 +19,10 @@ public class JobVetau_GroupC_37B {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        database db = new MySqlConnection();
-        if(db.openConnection()!=null){
-            System.out.println("Database Connected Successfully.");
-        } else{
-            System.out.println("Failes to connect to database.");
-        }
+        Registration registerForm = new Registration();
+
+        signUpController c = new signUpController(registerForm);
+        c.open();
     }
     
 }

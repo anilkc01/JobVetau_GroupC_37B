@@ -7,6 +7,7 @@ package View;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 import javax.swing.border.LineBorder;
 
 /**
@@ -43,7 +44,7 @@ public class Registration extends javax.swing.JFrame {
         address = new javax.swing.JTextField();
         pass = new javax.swing.JPasswordField();
         rePass = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        submitBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -195,9 +196,9 @@ public class Registration extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(34, 35, 205));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Register");
+        submitBtn.setBackground(new java.awt.Color(34, 35, 205));
+        submitBtn.setForeground(new java.awt.Color(255, 255, 255));
+        submitBtn.setText("Register");
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jLabel1.setText("Already have account?");
@@ -236,7 +237,7 @@ public class Registration extends javax.swing.JFrame {
                 .addContainerGap(406, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(submitBtn)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(438, 438, 438)
@@ -271,7 +272,7 @@ public class Registration extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rePass, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -483,7 +484,7 @@ public class Registration extends javax.swing.JFrame {
         name.setText("Enter company name");
 
     }//GEN-LAST:event_cmpBtnMouseClicked
-    String role = "seeker";
+    
     
    
     
@@ -528,7 +529,6 @@ public class Registration extends javax.swing.JFrame {
     private javax.swing.JTextField address;
     private javax.swing.JLabel cmpBtn;
     private javax.swing.JTextField email;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -537,6 +537,27 @@ public class Registration extends javax.swing.JFrame {
     private javax.swing.JPasswordField pass;
     private javax.swing.JPasswordField rePass;
     private javax.swing.JLabel seekerBtn;
+    private javax.swing.JButton submitBtn;
     private javax.swing.JTextField uName;
+    String role = "seeker";
     // End of variables declaration//GEN-END:variables
+
+    public void addAddUserListener(ActionListener listener) {
+        submitBtn.addActionListener(listener);
+    }
+    
+    public String getName(){return name.getText();}
+    public String getuName(){return uName.getText();}
+    public String getEmail(){return email.getText();}
+    public String getNumber(){return number.getText();}
+    public String getAddress(){return address.getText();}
+    public String getRole(){return role;}
+    public String getPassword(){
+        if(pass.getText().equals(rePass.getText())){
+            return pass.getText();
+        }else{
+            return "mismatch";
+        }
+    }
+    
 }
