@@ -4,11 +4,16 @@
  * and open the template in the editor.
  */
 package Database;
+import java.sql.*;
 
 /**
  *
  * @author thismac
  */
-public class Database {
+public interface database {
+    Connection openConnection();
+    void closeConnection(Connection conn);
+    ResultSet RunQuery(Connection conn, String query);
+    int executeUpdate(Connection conn, String query);
     
 }
