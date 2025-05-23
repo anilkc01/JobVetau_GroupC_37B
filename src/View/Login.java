@@ -6,6 +6,7 @@
 package View;
 
 import Controller.logInController;
+import Controller.signUpController;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 
@@ -96,6 +97,11 @@ public class Login extends javax.swing.JFrame {
         signup.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         signup.setForeground(new java.awt.Color(102, 102, 255));
         signup.setText("SignUp");
+        signup.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                signupMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -194,6 +200,13 @@ public class Login extends javax.swing.JFrame {
     private void uNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_uNameActionPerformed
+
+    private void signupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signupMouseClicked
+         Registration registerForm = new Registration();
+
+        signUpController c = new signUpController(registerForm);
+        c.open();
+    }//GEN-LAST:event_signupMouseClicked
 
     /**
      * @param args the command line arguments

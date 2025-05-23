@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.logInController;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -15,7 +16,7 @@ import javax.swing.border.LineBorder;
  * @author thismac
  */
 public class Registration extends javax.swing.JFrame {
-
+     String role = "seeker";
     /**
      * Creates new form Registration
      */
@@ -47,6 +48,7 @@ public class Registration extends javax.swing.JFrame {
         submitBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+       
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -206,6 +208,11 @@ public class Registration extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 255));
         jLabel2.setText("Login");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -484,6 +491,12 @@ public class Registration extends javax.swing.JFrame {
         name.setText("Enter company name");
 
     }//GEN-LAST:event_cmpBtnMouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        Login registerForm = new Login();
+        logInController c = new logInController(registerForm);
+        c.open();
+    }//GEN-LAST:event_jLabel2MouseClicked
     
     
    
@@ -539,7 +552,6 @@ public class Registration extends javax.swing.JFrame {
     private javax.swing.JLabel seekerBtn;
     private javax.swing.JButton submitBtn;
     private javax.swing.JTextField uName;
-    String role = "seeker";
     // End of variables declaration//GEN-END:variables
 
     public void addAddUserListener(ActionListener listener) {
