@@ -6,7 +6,7 @@
 package Controller;
 
 import Model.userData;
-import View.Registration;
+import View.Login;
 import dao.dao;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,11 +16,11 @@ import javax.swing.JOptionPane;
  *
  * @author thismac
  */
-public class signUpController {
+public class logInController {
     private final dao userDao = new dao();
-    private final Registration userView;
+    private final Login userView;
 
-    public signUpController(Registration userView) {
+    public logInController(Login userView) {
         this.userView = userView;
         userView.addAddUserListener(new AddUserListener());
     }
@@ -39,23 +39,13 @@ public class signUpController {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                String name = userView.getName();
                 String username = userView.getuName();
-                String email = userView.getEmail();
-                String number = userView.getNumber();
-                String address = userView.getAddress();
-                String role = userView.getRole();
-                String password = userView.getPassword();
+                String password = userView.getPass();
                 
-                userData user = new userData(name,username,number,email,address,role, password);
-                boolean check = userDao.checkUser(user);
-                if (check) {
-                    JOptionPane.showMessageDialog(userView, "Duplicate user");
-                } else {
-                    userDao.signUp(user);
-                }
+                userDao.logIn(username,password);
+                
             } catch (Exception ex) {
-                System.out.println("Error adding user: " + ex.getMessage());
+                System.out.println("Error Loggig user: " + ex.getMessage());
             }
         }
     }

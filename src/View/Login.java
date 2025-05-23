@@ -5,7 +5,9 @@
  */
 package View;
 
+import Controller.logInController;
 import java.awt.Color;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -238,4 +240,11 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel signup;
     private javax.swing.JTextField uName;
     // End of variables declaration//GEN-END:variables
+
+    public void addAddUserListener(ActionListener listener) {
+        loginBtn.addActionListener(listener);
+    }
+    
+    public String getuName(){return uName.getText();}
+    public String getPass(){return pass.getText();}
 }

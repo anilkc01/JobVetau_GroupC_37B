@@ -5,9 +5,9 @@
  */
 package jobvetau_groupc_37b;
 
-import Controller.signUpController;
+import Controller.logInController;
 import Database.*;
-import View.Registration;
+import View.Login;
 
 /**
  *
@@ -19,9 +19,9 @@ public class JobVetau_GroupC_37B {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Registration registerForm = new Registration();
+        Login registerForm = new Login();
 
-        signUpController c = new signUpController(registerForm);
+        logInController c = new logInController(registerForm);
         c.open();
     }
     
