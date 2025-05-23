@@ -30,7 +30,12 @@ public class dao {
             pstm.setString(5,user.getAddress());
             pstm.setString(6,user.getRole());
             pstm.setString(7,user.getPassword());
-            pstm.executeUpdate();
+            int rowsAffected = pstm.executeUpdate();
+            if (rowsAffected > 0) {
+                JOptionPane.showMessageDialog(null, " successful");
+            } else {
+                JOptionPane.showMessageDialog(null, "Failed");
+            }
         }catch(SQLException ex){
             Logger.getLogger(dao.class.getName()).log(Level.SEVERE,null,ex);
         }finally{
@@ -45,6 +50,9 @@ public class dao {
         try (PreparedStatement pstmt = conn2.prepareStatement(sql)) {
             pstmt.setString(1, user.getUsername());
             ResultSet result = pstmt.executeQuery();
+            if(result.next()){
+                JOptionPane.showMessageDialog(null, "Duplicate");
+            }
             return result.next();
         } catch (SQLException ex) {
             Logger.getLogger(dao.class.getName()).log(Level.SEVERE, null, ex);
