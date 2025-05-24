@@ -1,21 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
 import Model.userData;
 import View.Registration;
 import dao.dao;
+import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
 
-/**
- *
- * @author thismac
- */
+
 public class signUpController {
     private final dao userDao = new dao();
     private final Registration userView;
@@ -32,10 +24,8 @@ public class signUpController {
     public void close() {
         this.userView.dispose();
     }
-    
+
     class AddUserListener implements ActionListener {
-
-
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
@@ -46,18 +36,56 @@ public class signUpController {
                 String address = userView.getAddress();
                 String role = userView.getRole();
                 String password = userView.getPassword();
-                
-                userData user = new userData(name,username,number,email,address,role, password);
+
+                if (name.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Name is required");
+                    return;
+                }
+                if (username.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Username is required.");
+                    return;
+                }
+                if (email.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Email is required.");
+                    return;
+                }
+                if (number.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Phone number is required.");
+                    return;
+                }
+                if (address.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Address is required.");
+                    return;
+                }
+                if (password.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Password is required.");
+                    return;
+                }
+                if (password.equals("mismatch")) {
+                    JOptionPane.showMessageDialog(null, "Passwords do not match.");
+                    return;
+                }
+                if (!email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+                    JOptionPane.showMessageDialog(null, "Invalid email format.");
+                    return;
+                }
+                if (!number.matches("\\d{10}")) {
+                    JOptionPane.showMessageDialog(null, "Phone number must be 10 digits.");
+                    return;
+                }
+
+              
+                userData user = new userData(name, username, number, email, address, role, password);
                 boolean check = userDao.checkUser(user);
                 if (check) {
-                    JOptionPane.showMessageDialog(userView, "Duplicate user");
-                } else {
-                    userDao.signUp(user);
+                    return;
                 }
+
+                userDao.signUp(user);
+                userView.dispose();
             } catch (Exception ex) {
-                System.out.println("Error adding user: " + ex.getMessage());
+                JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
-    
 }

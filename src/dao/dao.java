@@ -50,9 +50,6 @@ public class dao {
         try (PreparedStatement pstmt = conn2.prepareStatement(sql)) {
             pstmt.setString(1, user.getUsername());
             ResultSet result = pstmt.executeQuery();
-            if(result.next()){
-                JOptionPane.showMessageDialog(null, "Duplicate");
-            }
             return result.next();
         } catch (SQLException ex) {
             Logger.getLogger(dao.class.getName()).log(Level.SEVERE, null, ex);

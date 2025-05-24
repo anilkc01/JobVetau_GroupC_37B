@@ -48,7 +48,6 @@ public class Registration extends javax.swing.JFrame {
         submitBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-       
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -201,6 +200,11 @@ public class Registration extends javax.swing.JFrame {
         submitBtn.setBackground(new java.awt.Color(34, 35, 205));
         submitBtn.setForeground(new java.awt.Color(255, 255, 255));
         submitBtn.setText("Register");
+        submitBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                submitBtnMouseClicked(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jLabel1.setText("Already have account?");
@@ -497,6 +501,10 @@ public class Registration extends javax.swing.JFrame {
         logInController c = new logInController(registerForm);
         c.open();
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void submitBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitBtnMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_submitBtnMouseClicked
     
     
    
@@ -558,18 +566,39 @@ public class Registration extends javax.swing.JFrame {
         submitBtn.addActionListener(listener);
     }
     
-    public String getName(){return name.getText();}
-    public String getuName(){return uName.getText();}
-    public String getEmail(){return email.getText();}
-    public String getNumber(){return number.getText();}
-    public String getAddress(){return address.getText();}
-    public String getRole(){return role;}
-    public String getPassword(){
-        if(pass.getText().equals(rePass.getText())){
-            return pass.getText();
-        }else{
-            return "mismatch";
-        }
+    public String getName() {
+    String text = name.getText().trim();
+    return text.isEmpty() || text.equals("Enter your name") || text.equals("Enter company name") ? "" : text;
+    }
+
+    public String getuName() {
+        String text = uName.getText().trim();
+        return text.isEmpty() || text.equals("Enter username") ? "" : text;
+    }
+
+    public String getEmail() {
+        String text = email.getText().trim();
+        return text.isEmpty() || text.equals("e-mail") ? "" : text;
+    }
+
+    public String getNumber() {
+        String text = number.getText().trim();
+        return text.isEmpty() || text.equals("Number") ? "" : text;
+    }
+
+    public String getAddress() {
+        String text = address.getText().trim();
+        return text.isEmpty() || text.equals("Address") ? "" : text;
+    }
+
+    public String getPassword() {
+        String password = pass.getText().equals("password") ? "" : pass.getText().trim();
+        String rePassword = rePass.getText().equals("re-password") ? "" : rePass.getText().trim();
+        return password.equals(rePassword) ? password : "mismatch";
+    }
+
+    public String getRole() {
+        return role;
     }
     
 }
