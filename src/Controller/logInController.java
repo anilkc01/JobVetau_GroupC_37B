@@ -42,6 +42,14 @@ public class logInController {
                 String username = userView.getuName();
                 String password = userView.getPass();
                 
+                 if (username.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Username is required.");
+                    return;
+                }
+                if (password.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Password is required.");
+                    return;
+                }
                 userDao.logIn(username,password);
                 
             } catch (Exception ex) {

@@ -89,7 +89,7 @@
                   <EmptySpace min="-2" pref="438" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <Component id="gotoLogin" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -126,7 +126,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="gotoLogin" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="40" max="32767" attributes="0"/>
               </Group>
@@ -258,6 +258,9 @@
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="passFocusLost"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="addWindowListener(new java.awt.event.WindowAdapter() {&#xa;        @Override&#xa;        public void windowOpened(java.awt.event.WindowEvent e) {&#xa;            pass.setEchoChar((char)0);&#xa;        }&#xa;    });"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JPasswordField" name="rePass">
           <Properties>
@@ -272,6 +275,9 @@
             <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="rePassInputMethodTextChanged"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rePassActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="addWindowListener(new java.awt.event.WindowAdapter() {&#xa;        @Override&#xa;        public void windowOpened(java.awt.event.WindowEvent e) {&#xa;            rePass.setEchoChar((char)0);&#xa;        }&#xa;    });"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="submitBtn">
           <Properties>
@@ -295,7 +301,7 @@
             <Property name="text" type="java.lang.String" value="Already have account?"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="gotoLogin">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Lucida Grande" size="15" style="0"/>
@@ -306,7 +312,7 @@
             <Property name="text" type="java.lang.String" value="Login"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel2MouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="gotoLoginMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>

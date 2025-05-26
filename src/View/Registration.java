@@ -9,6 +9,8 @@ import Controller.logInController;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.border.LineBorder;
 
 /**
@@ -47,7 +49,7 @@ public class Registration extends javax.swing.JFrame {
         rePass = new javax.swing.JPasswordField();
         submitBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        gotoLogin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -209,12 +211,12 @@ public class Registration extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jLabel1.setText("Already have account?");
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(102, 102, 255));
-        jLabel2.setText("Login");
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        gotoLogin.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        gotoLogin.setForeground(new java.awt.Color(102, 102, 255));
+        gotoLogin.setText("Login");
+        gotoLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                gotoLoginMouseClicked(evt);
             }
         });
 
@@ -254,7 +256,7 @@ public class Registration extends javax.swing.JFrame {
                 .addGap(438, 438, 438)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addComponent(gotoLogin)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -287,7 +289,7 @@ public class Registration extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(gotoLogin))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
@@ -295,6 +297,18 @@ public class Registration extends javax.swing.JFrame {
             @Override
             public void windowOpened(java.awt.event.WindowEvent e) {
                 seekerBtn.requestFocusInWindow();
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowOpened(java.awt.event.WindowEvent e) {
+                pass.setEchoChar((char)0);
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowOpened(java.awt.event.WindowEvent e) {
+                rePass.setEchoChar((char)0);
             }
         });
 
@@ -496,11 +510,12 @@ public class Registration extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cmpBtnMouseClicked
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void gotoLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gotoLoginMouseClicked
         Login registerForm = new Login();
         logInController c = new logInController(registerForm);
         c.open();
-    }//GEN-LAST:event_jLabel2MouseClicked
+        dispose();
+    }//GEN-LAST:event_gotoLoginMouseClicked
 
     private void submitBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitBtnMouseClicked
         // TODO add your handling code here:
@@ -550,8 +565,8 @@ public class Registration extends javax.swing.JFrame {
     private javax.swing.JTextField address;
     private javax.swing.JLabel cmpBtn;
     private javax.swing.JTextField email;
+    private javax.swing.JLabel gotoLogin;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField name;
     private javax.swing.JTextField number;
@@ -562,8 +577,12 @@ public class Registration extends javax.swing.JFrame {
     private javax.swing.JTextField uName;
     // End of variables declaration//GEN-END:variables
 
-    public void addAddUserListener(ActionListener listener) {
+    public void AddUserListener(ActionListener listener) {
         submitBtn.addActionListener(listener);
+    }
+    
+    public void gotoLoginListener(MouseEvent e) {
+        gotoLogin.addMouseListener((MouseListener) e);
     }
     
     public String getName() {

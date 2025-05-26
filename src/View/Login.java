@@ -69,6 +69,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        pass.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         pass.setForeground(new java.awt.Color(204, 204, 204));
         pass.setText("password");
         pass.setToolTipText("");
@@ -154,6 +155,19 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(230, Short.MAX_VALUE))
         );
 
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowOpened(java.awt.event.WindowEvent e) {
+                WelcomeNote.requestFocusInWindow();
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowOpened(java.awt.event.WindowEvent e) {
+                pass.setEchoChar((char)0);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -207,10 +221,14 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_uNameActionPerformed
 
     private void signupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signupMouseClicked
-         Registration registerForm = new Registration();
-
+       
+        Registration registerForm = new Registration();
         signUpController c = new signUpController(registerForm);
         c.open();
+        dispose();
+        
+        
+        
     }//GEN-LAST:event_signupMouseClicked
 
     private void loginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseClicked
@@ -266,6 +284,8 @@ public class Login extends javax.swing.JFrame {
     public void addAddUserListener(ActionListener listener) {
         loginBtn.addActionListener(listener);
     }
+    
+    
     
     public String getuName(){return uName.getText();}
     public String getPass(){return pass.getText();}

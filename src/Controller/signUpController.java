@@ -1,11 +1,14 @@
 package Controller;
 
 import Model.userData;
+import View.Login;
 import View.Registration;
 import dao.dao;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 
 
 public class signUpController {
@@ -14,8 +17,9 @@ public class signUpController {
 
     public signUpController(Registration userView) {
         this.userView = userView;
-        userView.addAddUserListener(new AddUserListener());
-    }
+        userView.AddUserListener(new AddUserListener());
+        
+       }
 
     public void open() {
         this.userView.setVisible(true);
@@ -24,6 +28,7 @@ public class signUpController {
     public void close() {
         this.userView.dispose();
     }
+
 
     class AddUserListener implements ActionListener {
         @Override
