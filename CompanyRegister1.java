@@ -43,7 +43,7 @@ public class CompanyRegister1 {
         rolePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         mainPanel.add(rolePanel);
-        mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+        mainPanel.add(Box.createRigidArea(new Dimension(0, 25)));
 
       
         JPanel formPanel = new JPanel(new CardLayout());
@@ -54,8 +54,8 @@ public class CompanyRegister1 {
        
         JPanel seekerForm = createRegistrationForm("Full Name:");
 
-        formPanel.add(companyForm, "company");
-        formPanel.add(seekerForm, "seeker");
+        formPanel.add(companyForm, "Company");
+        formPanel.add(seekerForm, "Seeker");
 
         
         mainPanel.add(formPanel);
@@ -64,7 +64,7 @@ public class CompanyRegister1 {
         CardLayout cl = (CardLayout) (formPanel.getLayout());
         companyBtn.addActionListener(e -> {
             cl.show(formPanel, "company");
-            companyBtn.setBackground(new Color(128, 0, 128));
+            companyBtn.setBackground(new Color(130, 1, 128));
             companyBtn.setForeground(Color.WHITE);
             seekerBtn.setBackground(Color.WHITE);
             seekerBtn.setForeground(Color.BLACK);
@@ -72,7 +72,7 @@ public class CompanyRegister1 {
 
         seekerBtn.addActionListener(e -> {
             cl.show(formPanel, "seeker");
-            seekerBtn.setBackground(new Color(128, 0, 128));
+            seekerBtn.setBackground(new Color(130, 1, 128));
             seekerBtn.setForeground(Color.WHITE);
             companyBtn.setBackground(Color.WHITE);
             companyBtn.setForeground(Color.BLACK);
@@ -89,17 +89,17 @@ public class CompanyRegister1 {
         panel.setBackground(new Color(173, 216, 230));
 
         panel.add(createLabeledField(firstFieldLabel));
-        panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        panel.add(Box.createRigidArea(new Dimension(0, 15)));
         panel.add(createLabeledField("Username:"));
-        panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        panel.add(Box.createRigidArea(new Dimension(0, 15)));
         panel.add(createLabeledField("Contact No:"));
-        panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        panel.add(Box.createRigidArea(new Dimension(0, 15)));
         panel.add(createLabeledField("Email:"));
-        panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        panel.add(Box.createRigidArea(new Dimension(0, 15)));
         panel.add(createLabeledField("Address:"));
-        panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        panel.add(Box.createRigidArea(new Dimension(0, 15)));
         panel.add(createLabeledPasswordField("Password:"));
-        panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        panel.add(Box.createRigidArea(new Dimension(0, 15)));
         panel.add(createLabeledPasswordField("Confirm Password:"));
 
         JButton registerButton = new JButton("Register");
