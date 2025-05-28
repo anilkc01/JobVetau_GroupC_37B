@@ -54,8 +54,7 @@ public class Registration extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(161, 196, 247));
         jPanel1.setPreferredSize(new java.awt.Dimension(1087, 655));
 
-        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Logo.png"))); // NOI18N
-        Logo.setText("jLabel1");
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/logo2-min.jpg"))); // NOI18N
 
         RegisterLabel.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         RegisterLabel.setText("Register");
@@ -288,7 +287,7 @@ public class Registration extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         addWindowListener(new java.awt.event.WindowAdapter() {
