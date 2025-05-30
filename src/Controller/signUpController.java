@@ -1,8 +1,10 @@
 package Controller;
 
+import Model.companyData;
 import Model.userData;
 import View.Login;
 import View.Registration;
+import View.companyDashboard;
 import dao.dao;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -81,13 +83,19 @@ public class signUpController {
 
               
                 userData user = new userData(name, username, number, email, address, role, password);
-                boolean check = userDao.checkUser(user);
-                if (check) {
+                String check = userDao.checkUser(user.getUsername());
+                if (!check.equals("null")) {
                     return;
+                }else{
+                    
+                    if(userDao.signUp(user)){
+                        Login loginPage = new Login();
+                        logInController c = new logInController(loginPage);
+                        c.open();
+                        close();
+                    }else{}
+                    
                 }
-
-                userDao.signUp(user);
-                userView.dispose();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }

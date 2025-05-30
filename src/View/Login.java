@@ -53,7 +53,7 @@ public class Login extends javax.swing.JFrame {
         WelcomeNote.setText("Welcome Back !");
 
         uName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        uName.setForeground(new java.awt.Color(204, 204, 204));
+        uName.setForeground(java.awt.Color.gray);
         uName.setText("username");
         uName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -70,7 +70,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         pass.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        pass.setForeground(new java.awt.Color(204, 204, 204));
+        pass.setForeground(java.awt.Color.gray);
         pass.setText("password");
         pass.setToolTipText("");
         pass.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -84,7 +84,6 @@ public class Login extends javax.swing.JFrame {
 
         loginBtn.setBackground(new java.awt.Color(34, 35, 205));
         loginBtn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        loginBtn.setForeground(new java.awt.Color(255, 255, 255));
         loginBtn.setText("Log In");
         loginBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -133,7 +132,7 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(460, 460, 460)
                         .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(414, Short.MAX_VALUE))
+                .addContainerGap(404, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

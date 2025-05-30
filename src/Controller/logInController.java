@@ -7,6 +7,7 @@ package Controller;
 
 import Model.userData;
 import View.Login;
+import View.companyDashboard;
 import dao.dao;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -50,7 +51,19 @@ public class logInController {
                     JOptionPane.showMessageDialog(null, "Password is required.");
                     return;
                 }
-                userDao.logIn(username,password);
+                String role = userDao.checkUser(username);
+                
+                if(role.equals("null")){
+                    JOptionPane.showMessageDialog(null, "Invalid Credentials");
+                }else if(role.equals("company")){
+                    
+                    companyDashboard dashboard = new companyDashboard();
+                    cmpController c = new cmpController(dashboard,userDao.logIn(username, password));
+                    c.getSetValues();
+                    c.open();
+                
+                }
+                
                 
             } catch (Exception ex) {
                 System.out.println("Error Loggig user: " + ex.getMessage());

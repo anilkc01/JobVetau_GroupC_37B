@@ -11,6 +11,9 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.border.LineBorder;
 
 /**
@@ -43,17 +46,18 @@ public class Registration extends javax.swing.JFrame {
         name = new javax.swing.JTextField();
         uName = new javax.swing.JTextField();
         email = new javax.swing.JTextField();
-        number = new javax.swing.JTextField();
         address = new javax.swing.JTextField();
         pass = new javax.swing.JPasswordField();
         rePass = new javax.swing.JPasswordField();
         submitBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         gotoLogin = new javax.swing.JLabel();
+        contactField = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(161, 196, 247));
+        jPanel1.setForeground(new java.awt.Color(204, 204, 204));
         jPanel1.setPreferredSize(new java.awt.Dimension(1087, 655));
 
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Logo.png"))); // NOI18N
@@ -80,7 +84,7 @@ public class Registration extends javax.swing.JFrame {
             }
         });
 
-        name.setForeground(new java.awt.Color(204, 204, 204));
+        name.setForeground(java.awt.Color.gray);
         name.setText("Enter your name");
         name.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -96,7 +100,7 @@ public class Registration extends javax.swing.JFrame {
             }
         });
 
-        uName.setForeground(new java.awt.Color(204, 204, 204));
+        uName.setForeground(java.awt.Color.gray);
         uName.setText("Enter username");
         uName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -112,7 +116,7 @@ public class Registration extends javax.swing.JFrame {
             }
         });
 
-        email.setForeground(new java.awt.Color(204, 204, 204));
+        email.setForeground(java.awt.Color.gray);
         email.setText("e-mail");
         email.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -128,23 +132,7 @@ public class Registration extends javax.swing.JFrame {
             }
         });
 
-        number.setForeground(new java.awt.Color(204, 204, 204));
-        number.setText("Number");
-        number.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                numberFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                numberFocusLost(evt);
-            }
-        });
-        number.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numberActionPerformed(evt);
-            }
-        });
-
-        address.setForeground(new java.awt.Color(204, 204, 204));
+        address.setForeground(java.awt.Color.gray);
         address.setText("Address");
         address.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -160,7 +148,7 @@ public class Registration extends javax.swing.JFrame {
             }
         });
 
-        pass.setForeground(new java.awt.Color(204, 204, 204));
+        pass.setForeground(java.awt.Color.gray);
         pass.setText("password");
         pass.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -176,7 +164,7 @@ public class Registration extends javax.swing.JFrame {
             }
         });
 
-        rePass.setForeground(new java.awt.Color(204, 204, 204));
+        rePass.setForeground(java.awt.Color.gray);
         rePass.setText("re-password");
         rePass.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -200,7 +188,7 @@ public class Registration extends javax.swing.JFrame {
         });
 
         submitBtn.setBackground(new java.awt.Color(34, 35, 205));
-        submitBtn.setForeground(new java.awt.Color(255, 255, 255));
+        submitBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         submitBtn.setText("Register");
         submitBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -220,22 +208,23 @@ public class Registration extends javax.swing.JFrame {
             }
         });
 
+        contactField.setForeground(java.awt.Color.gray);
+        contactField.setText("Contact");
+        contactField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                contactFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                contactFieldFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(403, 403, 403)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(uName, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                            .addComponent(name, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                            .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                            .addComponent(number, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                            .addComponent(address, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                            .addComponent(pass, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                            .addComponent(rePass, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,8 +235,18 @@ public class Registration extends javax.swing.JFrame {
                                 .addComponent(seekerBtn)
                                 .addGap(18, 18, 18)
                                 .addComponent(cmpBtn)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(406, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(403, 403, 403)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(uName)
+                            .addComponent(name)
+                            .addComponent(email)
+                            .addComponent(address)
+                            .addComponent(pass)
+                            .addComponent(rePass)
+                            .addComponent(contactField))))
+                .addGap(446, 446, 446))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(submitBtn)
@@ -277,7 +276,7 @@ public class Registration extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(number, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(contactField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -316,7 +315,7 @@ public class Registration extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1077, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -403,26 +402,6 @@ public class Registration extends javax.swing.JFrame {
             address.setForeground(Color.BLACK);
         }
     }//GEN-LAST:event_addressFocusGained
-
-    private void numberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numberActionPerformed
-
-    private void numberFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_numberFocusLost
-        // TODO add your handling code here:
-        if(number.getText().isEmpty()){
-            number.setText("Number");
-            number.setForeground(Color.GRAY);
-        }
-    }//GEN-LAST:event_numberFocusLost
-
-    private void numberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_numberFocusGained
-        // TODO add your handling code here:
-        if(number.getText().equals("Number")){
-            number.setText("");
-            number.setForeground(Color.BLACK);
-        }
-    }//GEN-LAST:event_numberFocusGained
 
     private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
         // TODO add your handling code here:
@@ -520,6 +499,34 @@ public class Registration extends javax.swing.JFrame {
     private void submitBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitBtnMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_submitBtnMouseClicked
+
+    private void contactFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_contactFieldFocusGained
+        String raw;
+        if(contactField.getText().equals("Contact")){
+            raw = "";
+        }else{
+            raw = contactField.getText();
+        }
+        try {
+            contactField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##########")));
+        } catch (ParseException ex) {
+            Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        contactField.setText(raw);
+        contactField.setForeground(Color.BLACK);
+    }//GEN-LAST:event_contactFieldFocusGained
+
+    private void contactFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_contactFieldFocusLost
+        String raw = contactField.getText().replaceAll("[^0-9]", "");
+        contactField.setFormatterFactory(null);
+        System.out.println(raw);
+        if(raw.isEmpty()){
+            contactField.setText("Contact");
+            contactField.setForeground(Color.GRAY);
+        }else{
+            contactField.setText(raw);
+        }
+    }//GEN-LAST:event_contactFieldFocusLost
     
     
    
@@ -564,12 +571,12 @@ public class Registration extends javax.swing.JFrame {
     private javax.swing.JLabel RegisterLabel;
     private javax.swing.JTextField address;
     private javax.swing.JLabel cmpBtn;
+    private javax.swing.JFormattedTextField contactField;
     private javax.swing.JTextField email;
     private javax.swing.JLabel gotoLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField name;
-    private javax.swing.JTextField number;
     private javax.swing.JPasswordField pass;
     private javax.swing.JPasswordField rePass;
     private javax.swing.JLabel seekerBtn;
@@ -601,7 +608,7 @@ public class Registration extends javax.swing.JFrame {
     }
 
     public String getNumber() {
-        String text = number.getText().trim();
+        String text = contactField.getText().trim();
         return text.isEmpty() || text.equals("Number") ? "" : text;
     }
 
