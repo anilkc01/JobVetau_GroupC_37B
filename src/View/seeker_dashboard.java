@@ -1,24 +1,20 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package View;
 
-import Model.companyData;
-import java.awt.event.ActionListener;
-
 /**
  *
- * @author thismac
+ * @author mugiw
  */
-public class companyDashboard extends javax.swing.JFrame {
+public class seeker_dashboard extends javax.swing.JFrame {
+
     /**
-     * Creates new form companyDashboard
+     * Creates new form seeker_dashboard
      */
-    public companyDashboard() {
+    public seeker_dashboard() {
         initComponents();
-       
     }
 
     /**
@@ -68,12 +64,11 @@ public class companyDashboard extends javax.swing.JFrame {
 
         companyProfile.setBackground(new java.awt.Color(255, 255, 255));
 
-        cmpLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/cmpLogo.png"))); // NOI18N
+        cmpLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/seekerlogo.png"))); // NOI18N
 
         cmpName.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        cmpName.setText("Company Name");
+        cmpName.setText("Krijal Shrestha");
 
-        LogOut.setBackground(new java.awt.Color(255, 255, 255));
         LogOut.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         LogOut.setForeground(new java.awt.Color(255, 51, 51));
         LogOut.setText("LogOut");
@@ -145,31 +140,31 @@ public class companyDashboard extends javax.swing.JFrame {
         cmpWebsite.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        jLabel1.setText("Company No. :");
+        jLabel1.setText("ID:");
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        jLabel2.setText("Sector :");
+        jLabel2.setText("Address:");
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jLabel3.setText("Contact :");
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        jLabel4.setText("Adddress :");
+        jLabel4.setText("Qualification:");
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jLabel5.setText("Email :");
 
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        jLabel6.setText("Employees :");
+        jLabel6.setText("Experience:");
 
         jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        jLabel7.setText("CEO :");
+        jLabel7.setText("Date of Birth:");
 
         jLabel8.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jLabel8.setText("Website");
 
         jLabel9.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        jLabel9.setText("Service");
+        jLabel9.setText("Specialization:");
 
         javax.swing.GroupLayout companyProfileLayout = new javax.swing.GroupLayout(companyProfile);
         companyProfile.setLayout(companyProfileLayout);
@@ -187,10 +182,6 @@ public class companyDashboard extends javax.swing.JFrame {
                 .addGap(84, 84, 84)
                 .addComponent(deleteBtn)
                 .addContainerGap())
-            .addGroup(companyProfileLayout.createSequentialGroup()
-                .addGap(191, 191, 191)
-                .addComponent(cmpLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(companyProfileLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(companyProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,6 +206,10 @@ public class companyDashboard extends javax.swing.JFrame {
                     .addComponent(cmpWebsite)
                     .addComponent(cmpService))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(companyProfileLayout.createSequentialGroup()
+                .addGap(191, 191, 191)
+                .addComponent(cmpLogo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         companyProfileLayout.setVerticalGroup(
             companyProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,33 +273,32 @@ public class companyDashboard extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 325, Short.MAX_VALUE)
-                .addComponent(companyProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 436, Short.MAX_VALUE)
+                .addComponent(companyProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(549, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(companyProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(14, 14, 14))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1077, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
         );
 
         pack();
@@ -322,25 +316,27 @@ public class companyDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_deleteBtnActionPerformed
 
-    private void cmpEmpCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmpEmpCountActionPerformed
+    private void cmpNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmpNoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmpEmpCountActionPerformed
+    }//GEN-LAST:event_cmpNoActionPerformed
 
     private void cmpEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmpEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmpEmailActionPerformed
 
-    private void cmpNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmpNoActionPerformed
+    private void cmpEmpCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmpEmpCountActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmpNoActionPerformed
+    }//GEN-LAST:event_cmpEmpCountActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    /*
     public static void main(String args[]) {
-        
-         
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -349,25 +345,23 @@ public class companyDashboard extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(companyDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(seeker_dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(companyDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(seeker_dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(companyDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(seeker_dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(companyDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(seeker_dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
-       
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new companyDashboard(company).setVisible(true);
+                new seeker_dashboard().setVisible(true);
             }
         });
     }
-*/
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LogOut;
@@ -397,29 +391,4 @@ public class companyDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
-    
-    public javax.swing.JLabel cmpLogo() { return cmpLogo; }
-    public javax.swing.JLabel cmpName() { return cmpName; }
-    public javax.swing.JTextField cmpAddress() { return cmpAddress; }
-    public javax.swing.JTextField cmpCEO() { return cmpCEO; }
-    public javax.swing.JTextField cmpContact() { return cmpContact; }
-    public javax.swing.JTextField cmpEmail() { return cmpEmail; }
-    public javax.swing.JTextField cmpEmpCount() { return cmpEmpCount; }
-    public javax.swing.JTextField cmpNo() { return cmpNo; }
-    public javax.swing.JTextField cmpSector() { return cmpSector; }
-    public javax.swing.JTextField cmpService() { return cmpService; }
-    public javax.swing.JTextField cmpWebsite() { return cmpWebsite; }
-    
-    public javax.swing.JButton getEditBtn() {
-        return editCmpProfile;
-    }
-
-    public void editListener(ActionListener listener) {
-        editCmpProfile.addActionListener(listener);
-    }
-    
-    public void logOutListener(ActionListener listener) {
-        LogOut.addActionListener(listener);
-    }
-    
 }
