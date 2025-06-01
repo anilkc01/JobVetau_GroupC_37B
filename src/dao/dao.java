@@ -63,7 +63,6 @@ public class dao {
                 
                 return result.getString("role");
             } else {
-                JOptionPane.showMessageDialog(null, "Duplicate User");
                 return "null";
             }
             
