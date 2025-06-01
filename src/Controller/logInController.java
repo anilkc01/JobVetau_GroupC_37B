@@ -7,6 +7,7 @@ package Controller;
 
 import Model.userData;
 import View.Login;
+import View.SkrDashboard;
 import View.companyDashboard;
 import dao.dao;
 import java.awt.event.ActionEvent;
@@ -53,15 +54,17 @@ public class logInController {
                 }
                 String role = userDao.checkUser(username);
                 
-                if(role.equals("null")){
-                    JOptionPane.showMessageDialog(null, "Invalid Credentials");
-                }else if(role.equals("company")){
-                    
+                if(role.equals("seeker")){
+                 SkrDashboard dashboard = new SkrDashboard();
+                    skrController c = new skrController(dashboard,userDao.logIn(username, password));
+                    c.open();
+
+                }else if(role.equals("company")){ 
                     companyDashboard dashboard = new companyDashboard();
                     cmpController c = new cmpController(dashboard,userDao.logIn(username, password));
-                    c.getSetValues();
                     c.open();
-                
+                }else{
+                    JOptionPane.showMessageDialog(null, "Invalid Credentials");
                 }
                 
                 

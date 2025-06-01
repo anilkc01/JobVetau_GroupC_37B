@@ -7,7 +7,7 @@ package dao;
 
 import Database.MySqlConnection;
 import Model.companyData;
-import Model.userData;
+import Model.*;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -63,6 +63,7 @@ public class dao {
                 
                 return result.getString("role");
             } else {
+                JOptionPane.showMessageDialog(null, "Duplicate User");
                 return "null";
             }
             
@@ -164,10 +165,10 @@ public class dao {
         String updateCompanySql = "UPDATE companies SET photo=?, regNo=?, sector=?, employees=?, ceo=?, website=?, service=? WHERE id=?";
         String insertCompanySql = "INSERT INTO companies (id, photo, regNo, sector, employees, ceo, website, service) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         System.out.println(company.getId());
-        try ( PreparedStatement userStmt = conn.prepareStatement(userSql);
-              PreparedStatement checkStmt = conn.prepareStatement(checkSql);
-              PreparedStatement updateStmt = conn.prepareStatement(updateCompanySql);
-              PreparedStatement insertStmt = conn.prepareStatement(insertCompanySql)) {
+        try (PreparedStatement userStmt = conn.prepareStatement(userSql);
+                PreparedStatement checkStmt = conn.prepareStatement(checkSql);
+                PreparedStatement updateStmt = conn.prepareStatement(updateCompanySql);
+                PreparedStatement insertStmt = conn.prepareStatement(insertCompanySql)) {
 
             // Update users table
             userStmt.setString(1, company.getName());
@@ -213,6 +214,135 @@ public class dao {
         }
     }
 
+    public seekerData getSeekerData(int id) {
+        MySqlConnection mySql = new MySqlConnection();
+        Connection conn1 = mySql.openConnection();
+
+        String sql = "SELECT u.name, u.uname, u.number, u.email, u.address, u.role, u.password, "
+                + "s.photo, s.idNo, s.DOB, s.experience, s.specialization, s.protfolio "
+                + "FROM users u LEFT JOIN seekers s ON u.id = s.id WHERE u.id = ?";
+
+        try (PreparedStatement pstm = conn1.prepareStatement(sql)) {
+            pstm.setInt(1, id);
+            ResultSet rs = pstm.executeQuery();
+
+            if (rs.next()) {
+                String name = rs.getString("name");
+                String username = rs.getString("uname");
+                String number = rs.getString("number");
+                String email = rs.getString("email");
+                String address = rs.getString("address");
+                String role = rs.getString("role");
+                String password = rs.getString("password");
+
+                // Seeker table fields may be null
+                String photo = rs.getString("photo");
+                String idNo = rs.getString("idNo");
+                String dob = rs.getString("DOB");
+                String experience = rs.getString("experience");
+                String specialization = rs.getString("specialization");
+                String portfolio = rs.getString("protfolio");
+
+                seekerData sData = new seekerData(photo, idNo, dob, experience, specialization, portfolio,
+                        name, username, number, email, address, role, password);
+                sData.setId(id);
+
+                return sData;
+            } else {
+                JOptionPane.showMessageDialog(null, "No user found with the given ID");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(dao.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "An error occurred while fetching seeker data");
+        } finally {
+            mySql.closeConnection(conn1);
+        }
+
+        return null;
+    }
+    
+    public void updateSeeker(seekerData seeker) {
+        MySqlConnection mySql = new MySqlConnection();
+        Connection conn = mySql.openConnection();
+
+        String userSql = "UPDATE users SET name=?, uname=?, number=?, email=?, address=?, role=?, password=? WHERE id=?";
+        String checkSql = "SELECT id FROM seekers WHERE id=?";
+        String updateSeekerSql = "UPDATE seekers SET photo=?, idNo=?, DOB=?, experience=?, specialization=?, protfolio=? WHERE id=?";
+        String insertSeekerSql = "INSERT INTO seekers (id, photo, idNo, DOB, experience, specialization, protfolio) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        try (
+                PreparedStatement userStmt = conn.prepareStatement(userSql);
+                PreparedStatement checkStmt = conn.prepareStatement(checkSql);
+                PreparedStatement updateStmt = conn.prepareStatement(updateSeekerSql);
+                PreparedStatement insertStmt = conn.prepareStatement(insertSeekerSql)) {
+            // Update users table
+            userStmt.setString(1, seeker.getName());
+            userStmt.setString(2, seeker.getUsername());
+            userStmt.setString(3, seeker.getNumber());
+            userStmt.setString(4, seeker.getEmail());
+            userStmt.setString(5, seeker.getAddress());
+            userStmt.setString(6, seeker.getRole());
+            userStmt.setString(7, seeker.getPassword());
+            userStmt.setInt(8, seeker.getId());
+            userStmt.executeUpdate();
+
+            // Check if seeker exists
+            checkStmt.setInt(1, seeker.getId());
+            ResultSet rs = checkStmt.executeQuery();
+
+            if (rs.next()) {
+                // Update seekers table
+                updateStmt.setString(1, seeker.getPhoto());
+                updateStmt.setString(2, seeker.getIdNo());
+                updateStmt.setString(3, seeker.getDOB());
+                updateStmt.setString(4, seeker.getExperience());
+                updateStmt.setString(5, seeker.getSpecialization());
+                updateStmt.setString(6, seeker.getProtfolio());
+                updateStmt.setInt(7, seeker.getId());
+                updateStmt.executeUpdate();
+            } else {
+                // Insert into seekers table
+                insertStmt.setInt(1, seeker.getId());
+                insertStmt.setString(2, seeker.getPhoto());
+                insertStmt.setString(3, seeker.getIdNo());
+                insertStmt.setString(4, seeker.getDOB());
+                insertStmt.setString(5, seeker.getExperience());
+                insertStmt.setString(6, seeker.getSpecialization());
+                insertStmt.setString(7, seeker.getProtfolio());
+                insertStmt.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace(); // You can replace with proper logging
+        } finally {
+            mySql.closeConnection(conn);
+        }
+    }
+
+    public void deleteUser(int id) {
+        MySqlConnection mySql = new MySqlConnection();
+        Connection conn = mySql.openConnection();
+
+        String deleteUserSql = "DELETE FROM users WHERE id = ?";
+
+        try (PreparedStatement userStmt = conn.prepareStatement(deleteUserSql)) {
+            userStmt.setInt(1, id);
+            int rowsAffected = userStmt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                JOptionPane.showMessageDialog(null, "User deleted successfully.");
+            } else {
+                JOptionPane.showMessageDialog(null, "No user found with the given ID.");
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(dao.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Error deleting user: " + e.getMessage());
+        } finally {
+            mySql.closeConnection(conn);
+        }
+    }
 
     
 }

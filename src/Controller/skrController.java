@@ -5,11 +5,12 @@
  */
 package Controller;
 
-import Model.companyData;
-import Model.userData;
+import Model.seekerData;
 import View.Login;
+import View.SkrDashboard;
 import View.companyDashboard;
 import dao.dao;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -17,40 +18,33 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.lang.System.Logger.Level;
 
 /**
  *
  * @author thismac
  */
-public class cmpController {
+public class skrController {
    private final dao  userDao =  new dao();
-   private final companyDashboard userView;
+   private final SkrDashboard userView;
    private final int id;
-   companyData company = null;
+   seekerData seeker = null;
    private static final String UPLOAD_DIR = "Assets";
-      private static final int LOGO_SIZE = 80;
-
-
-    public cmpController(companyDashboard userView, int id) {
+   
+   public skrController(SkrDashboard userView,int id) {
         this.userView = userView;
         this.id = id;
         userView.editListener(new editOrSave());
         userView.logOutListener(new logOut());
         userView.logoClickListener(new logoClick());
         userView.deleteListener(new delete());
-        new File(UPLOAD_DIR).mkdirs();
+         new File(UPLOAD_DIR).mkdirs();
         getSetValues();
     }
 
@@ -62,36 +56,35 @@ public class cmpController {
         this.userView.dispose();
     }
     
-    public void getSetValues(){
+    public void getSetValues() {
+
+        seeker = userDao.getSeekerData(id);
         
-        company  = userDao.getCompanyData(id);
+        userView.skrName().setText(seeker.getName());
+        userView.skrID().setText(seeker.getIdNo());
+        userView.skrContact().setText(seeker.getNumber());
+        userView.skrEmail().setText(seeker.getEmail());
+        userView.skrAddress().setText(seeker.getAddress());
+        userView.skrDOB().setText(seeker.getDOB());
+        userView.skrExperience().setText(seeker.getExperience());
+        userView.skrSpecialization().setText(seeker.getSpecialization());
+        userView.skrPortfolio().setText(seeker.getProtfolio());
         
-        userView.cmpName().setText(company.getName());
-        userView.cmpNo().setText(company.getRegNo());
-        userView.cmpSector().setText(company.getSector());
-        userView.cmpAddress().setText(company.getAddress());
-        userView.cmpContact().setText(company.getNumber());
-        userView.cmpEmail().setText(company.getEmail());
-        userView.cmpCEO().setText(company.getCeo());
-        userView.cmpEmpCount().setText(Integer.toString(company.getEmployees()));
-        userView.cmpWebsite().setText( company.getWebsite());
-        userView.cmpService().setText(company.getService());
-        String path = company.getPhoto();
+        String path = seeker.getPhoto();
         if (path != null && !path.isEmpty()) {
             try {
                 ImageIcon icon = new ImageIcon(path);
-                userView.cmpLogo().setIcon(icon);
+                userView.skrImage().setIcon(icon);
             } catch (Exception e) {
-                userView.cmpLogo().setIcon(new ImageIcon(getClass().getResource("/Assets/cmpLogo.png")));
+                userView.skrImage().setIcon(new ImageIcon(getClass().getResource("/Assets/skrLogo.png")));
             }
         } else {
-           userView. cmpLogo().setIcon(new ImageIcon(getClass().getResource("/Assets/cmpLogo.png")));
+            userView.skrImage().setIcon(new ImageIcon(getClass().getResource("/Assets/skrLogo.png")));
         }
     }
-
+    
+    
     private static class logOut implements ActionListener {
-
-        
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -113,7 +106,7 @@ public class cmpController {
             );
 
             if (enteredPassword != null) {
-                if (enteredPassword.equals(company.getPassword())) { 
+                if (enteredPassword.equals(seeker.getPassword())) { 
                     userDao.deleteUser(id);
                     Login registerForm = new Login();
                     logInController c = new logInController(registerForm);
@@ -128,44 +121,19 @@ public class cmpController {
 
     }
 
-    private class editOrSave implements ActionListener {
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String pLabel = userView.getEditBtn().getText();
-                if(pLabel.equals("Edit")){
-                    userView.getEditBtn().setText("Save");
-                    setEditable(true);
-                }else{
-                    userView.getEditBtn().setText("Edit");
-                    setEditable(false);
-                    company.setRegNo(userView.cmpNo().getText());
-                    company.setSector(userView.cmpSector().getText());
-                    company.setAddress(userView.cmpAddress().getText());
-                    company.setNumber(userView.cmpContact().getText());
-                    company.setEmail(userView.cmpEmail().getText());
-                    company.setCeo(userView.cmpCEO().getText());
-                    company.setEmployees(Integer.parseInt(userView.cmpEmpCount().getText()));
-                    company.setWebsite(userView.cmpWebsite().getText());
-                    company.setService(userView.cmpService().getText());
-                    userDao.updateCompany(company);
-                    getSetValues();
-                    
 
-                }
-        }
-    }
-    
+        
     private class logoClick extends MouseAdapter {
         @Override
         public void mouseClicked(MouseEvent e) {
-            if (userView.cmpLogo().isEnabled()) {
+            if (userView.skrImage().isEnabled()) {
                 JFileChooser fileChooser = new JFileChooser();
                 fileChooser.setFileFilter(new FileNameExtensionFilter("Image files", "png", "jpg", "jpeg"));
                 int result = fileChooser.showOpenDialog(userView);
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File selectedFile = fileChooser.getSelectedFile();
-                    String previous = company.getPhoto();
+                    String previous = seeker.getPhoto();
                     try {
                        BufferedImage originalImage = ImageIO.read(selectedFile);
                        BufferedImage resizedImage = resizeImage(originalImage, 80, 80);
@@ -175,9 +143,9 @@ public class cmpController {
                         Path destination = Paths.get(UPLOAD_DIR, fileName);
                         File outputFile = destination.toFile();
                         ImageIO.write(resizedImage, "png", outputFile);
-                        company.setPhoto(destination.toString());
+                        seeker.setPhoto(destination.toString());
                         ImageIcon icon = new ImageIcon(destination.toString());
-                        userView.cmpLogo().setIcon(icon);
+                        userView.skrImage().setIcon(icon);
                         
                         if(previous != null){
                              File existingLogo = new File(previous);
@@ -199,20 +167,45 @@ public class cmpController {
         }
     }
     
-    private void setEditable(boolean editable) {
-        
-        userView.cmpAddress().setEditable(editable);
-        userView.cmpCEO().setEditable(editable);
-        userView.cmpEmail().setEditable(editable);
-        userView.cmpEmpCount().setEditable(editable);
-        userView.cmpContact().setEditable(editable);
-        userView.cmpNo().setEditable(editable);
-        userView.cmpSector().setEditable(editable);
-        userView.cmpService().setEditable(editable);
-        userView.cmpWebsite().setEditable(editable);
-    }
-    
-   
+        private class editOrSave implements ActionListener {
 
-    
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String pLabel = userView.getEditBtn().getText();
+                if(pLabel.equals("Edit")){
+                    userView.getEditBtn().setText("Save");
+                    setEditable(true);
+                }else{
+                    userView.getEditBtn().setText("Edit");
+                    setEditable(false);
+                    seeker.setIdNo(userView.skrID().getText());
+                    seeker.setNumber(userView.skrContact().getText());
+                    seeker.setEmail(userView.skrEmail().getText());
+                    seeker.setAddress(userView.skrAddress().getText());
+                    System.out.println(userView.skrDOB().getText());
+                    System.out.println(userView.skrDOB().getText().trim());
+                    seeker.setDOB(userView.skrDOB().getText().equals("    -  -  ")? null:userView.skrDOB().getText());
+                    seeker.setExperience(userView.skrExperience().getText());
+                    seeker.setSpecialization(userView.skrSpecialization().getText());
+                    seeker.setProtfolio(userView.skrPortfolio().getText());
+                   userDao.updateSeeker(seeker);
+                    getSetValues();
+                    
+
+                }
+        }
+    }
+        
+    private void setEditable(boolean editable) {
+        userView.skrID().setEditable(editable);
+        userView.skrContact().setEditable(editable);
+        userView.skrEmail().setEditable(editable);
+        userView.skrAddress().setEditable(editable);
+        userView.skrDOB().setEditable(editable);
+        userView.skrExperience().setEditable(editable);
+        userView.skrSpecialization().setEditable(editable);
+        userView.skrPortfolio().setEditable(editable);
+        
+        
+    }
 }

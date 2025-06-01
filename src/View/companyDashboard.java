@@ -7,6 +7,7 @@ package View;
 
 import Model.companyData;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 
 /**
  *
@@ -69,6 +70,7 @@ public class companyDashboard extends javax.swing.JFrame {
         companyProfile.setBackground(new java.awt.Color(255, 255, 255));
 
         cmpLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/cmpLogo.png"))); // NOI18N
+        cmpLogo.setFocusTraversalKeysEnabled(false);
 
         cmpName.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         cmpName.setText("Company Name");
@@ -140,6 +142,11 @@ public class companyDashboard extends javax.swing.JFrame {
 
         cmpService.setEditable(false);
         cmpService.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        cmpService.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmpServiceActionPerformed(evt);
+            }
+        });
 
         cmpWebsite.setEditable(false);
         cmpWebsite.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
@@ -175,21 +182,17 @@ public class companyDashboard extends javax.swing.JFrame {
         companyProfile.setLayout(companyProfileLayout);
         companyProfileLayout.setHorizontalGroup(
             companyProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(companyProfileLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(cmpName)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, companyProfileLayout.createSequentialGroup()
-                .addContainerGap(184, Short.MAX_VALUE)
-                .addGroup(companyProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LogOut)
-                    .addComponent(editCmpProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(84, 84, 84)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(deleteBtn)
                 .addContainerGap())
             .addGroup(companyProfileLayout.createSequentialGroup()
-                .addGap(191, 191, 191)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(cmpLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(companyProfileLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(cmpName)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(companyProfileLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -205,7 +208,7 @@ public class companyDashboard extends javax.swing.JFrame {
                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(companyProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cmpNo, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                    .addComponent(cmpNo, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(cmpSector)
                     .addComponent(cmpAddress)
                     .addComponent(cmpContact)
@@ -215,13 +218,19 @@ public class companyDashboard extends javax.swing.JFrame {
                     .addComponent(cmpWebsite)
                     .addComponent(cmpService))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, companyProfileLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(companyProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LogOut)
+                    .addComponent(editCmpProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         companyProfileLayout.setVerticalGroup(
             companyProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(companyProfileLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addComponent(cmpLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(20, 20, 20)
                 .addComponent(cmpName)
                 .addGap(18, 18, 18)
                 .addGroup(companyProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -255,19 +264,16 @@ public class companyDashboard extends javax.swing.JFrame {
                 .addGroup(companyProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmpWebsite, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(companyProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cmpService, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(editCmpProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(companyProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(companyProfileLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(deleteBtn))
-                    .addGroup(companyProfileLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(LogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(LogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(deleteBtn)
                 .addContainerGap())
         );
 
@@ -278,9 +284,9 @@ public class companyDashboard extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 325, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 471, Short.MAX_VALUE)
                 .addComponent(companyProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,7 +297,7 @@ public class companyDashboard extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(companyProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(10, 10, 10))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -333,6 +339,10 @@ public class companyDashboard extends javax.swing.JFrame {
     private void cmpNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmpNoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmpNoActionPerformed
+
+    private void cmpServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmpServiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmpServiceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -420,6 +430,14 @@ public class companyDashboard extends javax.swing.JFrame {
     
     public void logOutListener(ActionListener listener) {
         LogOut.addActionListener(listener);
+    }
+    
+    public void logoClickListener(MouseAdapter listener) {
+        cmpLogo.addMouseListener(listener);
+    }
+    
+    public void deleteListener(ActionListener listener) {
+        deleteBtn.addActionListener(listener);
     }
     
 }

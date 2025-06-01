@@ -85,6 +85,7 @@ public class signUpController {
                 userData user = new userData(name, username, number, email, address, role, password);
                 String check = userDao.checkUser(user.getUsername());
                 if (!check.equals("null")) {
+                    JOptionPane.showMessageDialog(null, "Duplicate User");
                     return;
                 }else{
                     

@@ -284,7 +284,7 @@ public class Login extends javax.swing.JFrame {
         loginBtn.addActionListener(listener);
     }
     
-    
+
     
     public String getuName(){return uName.getText();}
     public String getPass(){return pass.getText();}
