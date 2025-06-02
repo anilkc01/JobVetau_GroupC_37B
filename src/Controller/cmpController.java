@@ -6,9 +6,9 @@
 package Controller;
 
 import Model.companyData;
+import Model.jobData;
 import Model.userData;
-import View.Login;
-import View.companyDashboard;
+import View.*;
 import dao.dao;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,6 +29,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.lang.System.Logger.Level;
+import javax.swing.JFrame;
 
 /**
  *
@@ -40,7 +41,7 @@ public class cmpController {
    private final int id;
    companyData company = null;
    private static final String UPLOAD_DIR = "Assets";
-      private static final int LOGO_SIZE = 80;
+   private static final int LOGO_SIZE = 80;
 
 
     public cmpController(companyDashboard userView, int id) {
@@ -50,6 +51,7 @@ public class cmpController {
         userView.logOutListener(new logOut());
         userView.logoClickListener(new logoClick());
         userView.deleteListener(new delete());
+        userView.addJobListener(new addNewJob());
         new File(UPLOAD_DIR).mkdirs();
         getSetValues();
     }
@@ -99,6 +101,39 @@ public class cmpController {
             logInController c = new logInController(loginPage);
             c.open();
         }
+    }
+
+    private class addNewJob implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+             addJob jobForm = new addJob();
+
+            int result = JOptionPane.showConfirmDialog(
+                    null,
+                    jobForm,
+                    "Add New Job",
+                    JOptionPane.OK_CANCEL_OPTION,
+                    JOptionPane.PLAIN_MESSAGE
+            );
+
+            if (result == JOptionPane.OK_OPTION) {
+                String title = jobForm.getTitle();
+                String description = jobForm.getDescription();
+                String mode = jobForm.getMode();
+                String location = jobForm.getJobLocation();
+                String salary = jobForm.getSalary();
+
+                // Validate inputs here (optional)
+                // Save to DB using DAO
+                jobData newJob = new jobData(title,description,location,salary,mode,id);
+                userDao.addJob(newJob);
+
+                JOptionPane.showMessageDialog(null, "Job added successfully!");
+            }
+
+        }
+
     }
 
     private class delete implements ActionListener {

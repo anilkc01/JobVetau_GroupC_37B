@@ -343,5 +343,29 @@ public class dao {
         }
     }
 
+    public void addJob(jobData job) {
+        MySqlConnection mySql = new MySqlConnection();
+        Connection conn = mySql.openConnection();
+
+        String sql = "INSERT INTO jobs (title, description, location, salary, mode, company_id) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, job.getTitle());
+            stmt.setString(2, job.getDescription());
+            stmt.setString(3, job.getLocation());
+            stmt.setString(4, job.getSalary());
+            stmt.setString(5, job.getMode());
+            stmt.setInt(6, job.getCompanyId());
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace(); // Or log error
+            JOptionPane.showMessageDialog(null, "Failed to add job: " + e.getMessage());
+        } finally {
+            mySql.closeConnection(conn);
+        }
+    }
+
+
     
 }
