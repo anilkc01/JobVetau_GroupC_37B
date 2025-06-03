@@ -29,6 +29,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.lang.System.Logger.Level;
+import java.util.ArrayList;
+import javax.swing.Box;
 import javax.swing.JFrame;
 
 /**
@@ -39,9 +41,11 @@ public class cmpController {
    private final dao  userDao =  new dao();
    private final companyDashboard userView;
    private final int id;
-   companyData company = null;
+   private companyData company = null;
+   private ArrayList<jobData> jobs = null;
    private static final String UPLOAD_DIR = "Assets";
    private static final int LOGO_SIZE = 80;
+   public javax.swing.JPanel jobsContainer;
 
 
     public cmpController(companyDashboard userView, int id) {
@@ -67,7 +71,6 @@ public class cmpController {
     public void getSetValues(){
         
         company  = userDao.getCompanyData(id);
-        
         userView.cmpName().setText(company.getName());
         userView.cmpNo().setText(company.getRegNo());
         userView.cmpSector().setText(company.getSector());
@@ -89,6 +92,8 @@ public class cmpController {
         } else {
            userView. cmpLogo().setIcon(new ImageIcon(getClass().getResource("/Assets/cmpLogo.png")));
         }
+        
+        loadJobs();
     }
 
     private static class logOut implements ActionListener {
@@ -124,9 +129,9 @@ public class cmpController {
                 String location = jobForm.getJobLocation();
                 String salary = jobForm.getSalary();
 
-                // Validate inputs here (optional)
-                // Save to DB using DAO
-                jobData newJob = new jobData(title,description,location,salary,mode,id);
+
+                jobData newJob = new jobData(title,description,location,salary,mode);
+                newJob.setId(id);
                 userDao.addJob(newJob);
 
                 JOptionPane.showMessageDialog(null, "Job added successfully!");
@@ -247,6 +252,22 @@ public class cmpController {
         userView.cmpWebsite().setEditable(editable);
     }
     
+    public void loadJobs() {
+        jobs = userDao.getOurJobs(id);
+        jobsContainer = userView.getPanel();
+        jobsContainer.removeAll(); // clear old content if needed
+
+        for (jobData job : jobs) {
+            System.out.println("a");
+            ourJobs jobPanel = new ourJobs();
+            new ourJobController(jobPanel, job); // populate view
+            jobsContainer.add(jobPanel);
+            jobsContainer.add(Box.createVerticalStrut(10)); // spacing between jobs
+        }
+
+        jobsContainer.revalidate(); // refresh UI
+        jobsContainer.repaint();
+    }
    
 
     

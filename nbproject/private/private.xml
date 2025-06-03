@@ -5,11 +5,10 @@
         <group>
             <file>file:/Users/thismac/Documents/NetBeansProjects/JobVetau_GroupC_37B/src/Controller/skrController.java</file>
             <file>file:/Users/thismac/Documents/NetBeansProjects/JobVetau_GroupC_37B/src/Controller/cmpController.java</file>
-            <file>file:/Users/thismac/Documents/NetBeansProjects/JobVetau_GroupC_37B/src/View/SkrDashboard.java</file>
-            <file>file:/Users/thismac/Documents/NetBeansProjects/JobVetau_GroupC_37B/src/Controller/logInController.java</file>
+            <file>file:/Users/thismac/Documents/NetBeansProjects/JobVetau_GroupC_37B/src/View/ourJobs.java</file>
             <file>file:/Users/thismac/Documents/NetBeansProjects/JobVetau_GroupC_37B/src/Model/jobData.java</file>
-            <file>file:/Users/thismac/Documents/NetBeansProjects/JobVetau_GroupC_37B/src/View/addJob.java</file>
-            <file>file:/Users/thismac/Documents/NetBeansProjects/JobVetau_GroupC_37B/src/View/Login.java</file>
+            <file>file:/Users/thismac/Documents/NetBeansProjects/JobVetau_GroupC_37B/src/Controller/ourJobController.java</file>
+            <file>file:/Users/thismac/Documents/NetBeansProjects/JobVetau_GroupC_37B/src/View/companyDashboard.java</file>
             <file>file:/Users/thismac/Documents/NetBeansProjects/JobVetau_GroupC_37B/src/dao/dao.java</file>
         </group>
     </open-files>

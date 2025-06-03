@@ -20,13 +20,13 @@ public class jobData {
     private String postedDate;
     private int companyId;
 
-    public jobData(String title, String description, String location, String salary,String mode, int companyId) {
+    public jobData(String title, String description, String location, String salary,String mode) {
         this.title = title;
         this.description = description;
         this.location = location;
         this.salary = salary;
         this.mode = mode;
-        this.companyId = companyId;
+       
     }
 
     // Getters and setters

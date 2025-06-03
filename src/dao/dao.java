@@ -9,6 +9,7 @@ import Database.MySqlConnection;
 import Model.companyData;
 import Model.*;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -366,6 +367,44 @@ public class dao {
         }
     }
 
+    public ArrayList<jobData> getOurJobs(int uid) {
+        ArrayList<jobData> jobList = new ArrayList<>();
+        MySqlConnection mySql = new MySqlConnection();
+        Connection conn1 = mySql.openConnection();
+
+        String sql = "SELECT * FROM jobs WHERE company_id = ?";
+
+        try (PreparedStatement pstm = conn1.prepareStatement(sql)) {
+            pstm.setInt(1, uid);
+            ResultSet rs = pstm.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String title = rs.getString("title");
+                String mode = rs.getString("mode");
+                String description = rs.getString("description");
+                String location = rs.getString("location");
+                String salary = rs.getString("salary");
+
+                jobData job = new jobData(title, description, location, salary, mode);
+                job.setId(id);
+
+                jobList.add(job);
+            }
+
+            if (jobList.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No jobs found for the given company ID");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(dao.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "An error occurred while fetching job data");
+        } finally {
+            mySql.closeConnection(conn1);
+        }
+
+        return jobList;
+    }
 
     
 }
