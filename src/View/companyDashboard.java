@@ -9,6 +9,7 @@ import Model.companyData;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 
+
 /**
  *
  * @author thismac
@@ -19,6 +20,8 @@ public class companyDashboard extends javax.swing.JFrame {
      */
     public companyDashboard() {
         initComponents();
+        jobList.setLayout(new javax.swing.BoxLayout(jobList, javax.swing.BoxLayout.Y_AXIS));
+        jobList.setPreferredSize(null);
        
     }
 
@@ -58,8 +61,8 @@ public class companyDashboard extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         addJob = new java.awt.Button();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jobListContainer = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jobList = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -277,18 +280,28 @@ public class companyDashboard extends javax.swing.JFrame {
         addJob.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         addJob.setLabel("Add Job");
 
-        javax.swing.GroupLayout jobListContainerLayout = new javax.swing.GroupLayout(jobListContainer);
-        jobListContainer.setLayout(jobListContainerLayout);
-        jobListContainerLayout.setHorizontalGroup(
-            jobListContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 660, Short.MAX_VALUE)
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane1.setViewportBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jScrollPane1.setMinimumSize(new java.awt.Dimension(675, 475));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(510, 200));
+        jScrollPane1.setSize(new java.awt.Dimension(510, 200));
+
+        jobList.setBackground(new java.awt.Color(161, 195, 247));
+        jobList.setPreferredSize(new java.awt.Dimension(0, 0));
+
+        javax.swing.GroupLayout jobListLayout = new javax.swing.GroupLayout(jobList);
+        jobList.setLayout(jobListLayout);
+        jobListLayout.setHorizontalGroup(
+            jobListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        jobListContainerLayout.setVerticalGroup(
-            jobListContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 473, Short.MAX_VALUE)
+        jobListLayout.setVerticalGroup(
+            jobListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jScrollPane2.setViewportView(jobListContainer);
+        jScrollPane1.setViewportView(jobList);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -301,15 +314,15 @@ public class companyDashboard extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 471, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 481, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(addJob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)))
                 .addComponent(companyProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
         );
@@ -322,8 +335,9 @@ public class companyDashboard extends javax.swing.JFrame {
                         .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(7, 7, 7)
                         .addComponent(addJob, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(companyProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -437,8 +451,8 @@ public class companyDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JPanel jobListContainer;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jobList;
     // End of variables declaration//GEN-END:variables
     
     public javax.swing.JLabel cmpLogo() { return cmpLogo; }
@@ -452,7 +466,7 @@ public class companyDashboard extends javax.swing.JFrame {
     public javax.swing.JTextField cmpSector() { return cmpSector; }
     public javax.swing.JTextField cmpService() { return cmpService; }
     public javax.swing.JTextField cmpWebsite() { return cmpWebsite; }
-    public javax.swing.JPanel getPanel(){return jobListContainer;}
+    public javax.swing.JPanel getPanel(){return jobList;}
     
     public javax.swing.JButton getEditBtn() {
         return editCmpProfile;

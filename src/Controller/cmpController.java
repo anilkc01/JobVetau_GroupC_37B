@@ -131,10 +131,12 @@ public class cmpController {
 
 
                 jobData newJob = new jobData(title,description,location,salary,mode);
-                newJob.setId(id);
-                userDao.addJob(newJob);
+                newJob.setCompanyId(id);
+                if(userDao.addJob(newJob)){
+                    loadJobs();
+                }
 
-                JOptionPane.showMessageDialog(null, "Job added successfully!");
+                
             }
 
         }
@@ -251,21 +253,22 @@ public class cmpController {
         userView.cmpService().setEditable(editable);
         userView.cmpWebsite().setEditable(editable);
     }
-    
+
     public void loadJobs() {
         jobs = userDao.getOurJobs(id);
+        System.out.println("Number of jobs retrieved: " + jobs.size()); 
         jobsContainer = userView.getPanel();
-        jobsContainer.removeAll(); // clear old content if needed
+        jobsContainer.removeAll();
 
         for (jobData job : jobs) {
-            System.out.println("a");
+            System.out.println("Job: " + job.getTitle());
             ourJobs jobPanel = new ourJobs();
-            new ourJobController(jobPanel, job); // populate view
+            new ourJobController(jobPanel, job);
             jobsContainer.add(jobPanel);
-            jobsContainer.add(Box.createVerticalStrut(10)); // spacing between jobs
+            jobsContainer.add(Box.createVerticalStrut(10));
         }
 
-        jobsContainer.revalidate(); // refresh UI
+        jobsContainer.revalidate();
         jobsContainer.repaint();
     }
    

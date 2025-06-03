@@ -344,7 +344,7 @@ public class dao {
         }
     }
 
-    public void addJob(jobData job) {
+    public boolean addJob(jobData job) {
         MySqlConnection mySql = new MySqlConnection();
         Connection conn = mySql.openConnection();
 
@@ -357,14 +357,22 @@ public class dao {
             stmt.setString(4, job.getSalary());
             stmt.setString(5, job.getMode());
             stmt.setInt(6, job.getCompanyId());
-
-            stmt.executeUpdate();
+            int rowsAffected = stmt.executeUpdate();
+            System.out.println(rowsAffected);
+            if (rowsAffected > 0) {
+                JOptionPane.showMessageDialog(null, "Added Successfully");
+                return true;
+            } else{
+                JOptionPane.showMessageDialog(null, " Failed to Add Job");
+                return false;
+            }
         } catch (SQLException e) {
             e.printStackTrace(); // Or log error
             JOptionPane.showMessageDialog(null, "Failed to add job: " + e.getMessage());
         } finally {
             mySql.closeConnection(conn);
         }
+        return false;
     }
 
     public ArrayList<jobData> getOurJobs(int uid) {
@@ -406,5 +414,17 @@ public class dao {
         return jobList;
     }
 
-    
+    public boolean deleteJob(int jobId) {
+        MySqlConnection mySql = new MySqlConnection();
+        Connection conn = mySql.openConnection();
+        String sql = "DELETE FROM jobs WHERE id = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, jobId);
+            int rowsAffected = pstmt.executeUpdate();
+            return rowsAffected > 0; // Return true if at least one row was deleted
+        } catch (SQLException e) {
+            System.err.println("Error deleting job with ID " + jobId + ": " + e.getMessage());
+            return false; // Return false on error
+        }
+    }
 }
