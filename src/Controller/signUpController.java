@@ -1,11 +1,16 @@
 package Controller;
 
+import Model.companyData;
 import Model.userData;
+import View.Login;
 import View.Registration;
+import View.companyDashboard;
 import dao.dao;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 
 
 public class signUpController {
@@ -14,8 +19,9 @@ public class signUpController {
 
     public signUpController(Registration userView) {
         this.userView = userView;
-        userView.addAddUserListener(new AddUserListener());
-    }
+        userView.AddUserListener(new AddUserListener());
+        
+       }
 
     public void open() {
         this.userView.setVisible(true);
@@ -24,6 +30,7 @@ public class signUpController {
     public void close() {
         this.userView.dispose();
     }
+
 
     class AddUserListener implements ActionListener {
         @Override
@@ -76,13 +83,20 @@ public class signUpController {
 
               
                 userData user = new userData(name, username, number, email, address, role, password);
-                boolean check = userDao.checkUser(user);
-                if (check) {
+                String check = userDao.checkUser(user.getUsername());
+                if (!check.equals("null")) {
+                    JOptionPane.showMessageDialog(null, "Duplicate User");
                     return;
+                }else{
+                    
+                    if(userDao.signUp(user)){
+                        Login loginPage = new Login();
+                        logInController c = new logInController(loginPage);
+                        c.open();
+                        close();
+                    }else{}
+                    
                 }
-
-                userDao.signUp(user);
-                userView.dispose();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }

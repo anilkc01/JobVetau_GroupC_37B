@@ -20,7 +20,6 @@ public class JobVetau_GroupC_37B {
      */
     public static void main(String[] args) {
         Login registerForm = new Login();
-
         logInController c = new logInController(registerForm);
         c.open();
     }
