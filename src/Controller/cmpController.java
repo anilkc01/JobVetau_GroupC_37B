@@ -6,9 +6,9 @@
 package Controller;
 
 import Model.companyData;
+import Model.jobData;
 import Model.userData;
-import View.Login;
-import View.companyDashboard;
+import View.*;
 import dao.dao;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,6 +29,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.lang.System.Logger.Level;
+import java.util.ArrayList;
+import javax.swing.Box;
+import javax.swing.JFrame;
 
 /**
  *
@@ -38,9 +41,11 @@ public class cmpController {
    private final dao  userDao =  new dao();
    private final companyDashboard userView;
    private final int id;
-   companyData company = null;
+   private companyData company = null;
+   private ArrayList<jobData> jobs = null;
    private static final String UPLOAD_DIR = "Assets";
-      private static final int LOGO_SIZE = 80;
+   private static final int LOGO_SIZE = 80;
+   public javax.swing.JPanel jobsContainer;
 
 
     public cmpController(companyDashboard userView, int id) {
@@ -50,6 +55,7 @@ public class cmpController {
         userView.logOutListener(new logOut());
         userView.logoClickListener(new logoClick());
         userView.deleteListener(new delete());
+        userView.addJobListener(new addNewJob());
         new File(UPLOAD_DIR).mkdirs();
         getSetValues();
     }
@@ -65,7 +71,6 @@ public class cmpController {
     public void getSetValues(){
         
         company  = userDao.getCompanyData(id);
-        
         userView.cmpName().setText(company.getName());
         userView.cmpNo().setText(company.getRegNo());
         userView.cmpSector().setText(company.getSector());
@@ -87,6 +92,8 @@ public class cmpController {
         } else {
            userView. cmpLogo().setIcon(new ImageIcon(getClass().getResource("/Assets/cmpLogo.png")));
         }
+        
+        loadJobs();
     }
 
     private static class logOut implements ActionListener {
@@ -99,6 +106,41 @@ public class cmpController {
             logInController c = new logInController(loginPage);
             c.open();
         }
+    }
+
+    private class addNewJob implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+             addJob jobForm = new addJob();
+
+            int result = JOptionPane.showConfirmDialog(
+                    null,
+                    jobForm,
+                    "Add New Job",
+                    JOptionPane.OK_CANCEL_OPTION,
+                    JOptionPane.PLAIN_MESSAGE
+            );
+
+            if (result == JOptionPane.OK_OPTION) {
+                String title = jobForm.getTitle();
+                String description = jobForm.getDescription();
+                String mode = jobForm.getMode();
+                String location = jobForm.getJobLocation();
+                String salary = jobForm.getSalary();
+
+
+                jobData newJob = new jobData(title,description,location,salary,mode);
+                newJob.setCompanyId(id);
+                if(userDao.addJob(newJob)){
+                    loadJobs();
+                }
+
+                
+            }
+
+        }
+
     }
 
     private class delete implements ActionListener {
@@ -211,7 +253,24 @@ public class cmpController {
         userView.cmpService().setEditable(editable);
         userView.cmpWebsite().setEditable(editable);
     }
-    
+
+    public void loadJobs() {
+        jobs = userDao.getOurJobs(id);
+        System.out.println("Number of jobs retrieved: " + jobs.size()); 
+        jobsContainer = userView.getPanel();
+        jobsContainer.removeAll();
+
+        for (jobData job : jobs) {
+            System.out.println("Job: " + job.getTitle());
+            ourJobs jobPanel = new ourJobs();
+            new ourJobController(jobPanel, job);
+            jobsContainer.add(jobPanel);
+            jobsContainer.add(Box.createVerticalStrut(10));
+        }
+
+        jobsContainer.revalidate();
+        jobsContainer.repaint();
+    }
    
 
     

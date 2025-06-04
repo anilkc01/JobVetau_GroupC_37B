@@ -9,6 +9,7 @@ import Database.MySqlConnection;
 import Model.companyData;
 import Model.*;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -343,5 +344,87 @@ public class dao {
         }
     }
 
-    
+    public boolean addJob(jobData job) {
+        MySqlConnection mySql = new MySqlConnection();
+        Connection conn = mySql.openConnection();
+
+        String sql = "INSERT INTO jobs (title, description, location, salary, mode, company_id) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, job.getTitle());
+            stmt.setString(2, job.getDescription());
+            stmt.setString(3, job.getLocation());
+            stmt.setString(4, job.getSalary());
+            stmt.setString(5, job.getMode());
+            stmt.setInt(6, job.getCompanyId());
+            int rowsAffected = stmt.executeUpdate();
+            System.out.println(rowsAffected);
+            if (rowsAffected > 0) {
+                JOptionPane.showMessageDialog(null, "Added Successfully");
+                return true;
+            } else{
+                JOptionPane.showMessageDialog(null, " Failed to Add Job");
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Or log error
+            JOptionPane.showMessageDialog(null, "Failed to add job: " + e.getMessage());
+        } finally {
+            mySql.closeConnection(conn);
+        }
+        return false;
+    }
+
+    public ArrayList<jobData> getOurJobs(int uid) {
+        ArrayList<jobData> jobList = new ArrayList<>();
+        MySqlConnection mySql = new MySqlConnection();
+        Connection conn1 = mySql.openConnection();
+
+        String sql = "SELECT * FROM jobs WHERE company_id = ?";
+
+        try (PreparedStatement pstm = conn1.prepareStatement(sql)) {
+            pstm.setInt(1, uid);
+            ResultSet rs = pstm.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String title = rs.getString("title");
+                String mode = rs.getString("mode");
+                String description = rs.getString("description");
+                String location = rs.getString("location");
+                String salary = rs.getString("salary");
+
+                jobData job = new jobData(title, description, location, salary, mode);
+                job.setId(id);
+
+                jobList.add(job);
+            }
+
+            if (jobList.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No jobs found for the given company ID");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(dao.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "An error occurred while fetching job data");
+        } finally {
+            mySql.closeConnection(conn1);
+        }
+
+        return jobList;
+    }
+
+    public boolean deleteJob(int jobId) {
+        MySqlConnection mySql = new MySqlConnection();
+        Connection conn = mySql.openConnection();
+        String sql = "DELETE FROM jobs WHERE id = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, jobId);
+            int rowsAffected = pstmt.executeUpdate();
+            return rowsAffected > 0; // Return true if at least one row was deleted
+        } catch (SQLException e) {
+            System.err.println("Error deleting job with ID " + jobId + ": " + e.getMessage());
+            return false; // Return false on error
+        }
+    }
 }
