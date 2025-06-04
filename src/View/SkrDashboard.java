@@ -5,8 +5,10 @@
  */
 package View;
 
+import Controller.JobController;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import View.viewjobpage;
 
 /**
  *
@@ -19,6 +21,7 @@ public class SkrDashboard extends javax.swing.JFrame {
      */
     public SkrDashboard() {
         initComponents();
+        loadProfileData(); // Load profile data when dashboard opens
     }
 
     /**
@@ -251,7 +254,13 @@ public class SkrDashboard extends javax.swing.JFrame {
 
         btnView.setBackground(new java.awt.Color(0, 0, 204));
         btnView.setForeground(new java.awt.Color(255, 255, 255));
-        btnView.setText("View all jobs");
+        btnView.setText("View All Jobs");
+        btnView.setFont(new java.awt.Font("Lucida Grande", 1, 18));
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewAllJobsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -300,17 +309,50 @@ public class SkrDashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LogOutActionPerformed
+    private void LogOutActionPerformed(java.awt.event.ActionEvent evt) {
+        // Close current window and show login screen
+        this.dispose();
+        new Login().setVisible(true);
+    }
 
-    private void editSkrProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editSkrProfileActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editSkrProfileActionPerformed
+    private void editSkrProfileActionPerformed(java.awt.event.ActionEvent evt) {
+        // Toggle text fields editability (excluding ID which should remain read-only)
+        skrContact.setEditable(!skrContact.isEditable());
+        skrAddress.setEditable(!skrAddress.isEditable());
+        skrEmail.setEditable(!skrEmail.isEditable());
+        skrDOB.setEditable(!skrDOB.isEditable());
+        skrExperience.setEditable(!skrExperience.isEditable());
+        skrSpecialization.setEditable(!skrSpecialization.isEditable());
+        skrPortfolio.setEditable(!skrPortfolio.isEditable());
+        
+        // Change button text based on state
+        if(skrContact.isEditable()) {
+            editSkrProfile.setText("Save");
+            editSkrProfile.setForeground(new java.awt.Color(0, 153, 51));  // Green color
+        } else {
+            editSkrProfile.setText("Edit");
+            editSkrProfile.setForeground(new java.awt.Color(102, 204, 0));
+            // Here you would typically save the changes to your database
+            javax.swing.JOptionPane.showMessageDialog(this, "Profile updated successfully!");
+        }
+    }
 
-    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteBtnActionPerformed
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {
+        int confirm = javax.swing.JOptionPane.showConfirmDialog(
+            this,
+            "Are you sure you want to delete your profile? This action cannot be undone.",
+            "Confirm Delete",
+            javax.swing.JOptionPane.YES_NO_OPTION,
+            javax.swing.JOptionPane.WARNING_MESSAGE
+        );
+        
+        if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+            // Here you would typically delete the profile from your database
+            this.dispose();
+            new Login().setVisible(true);
+            javax.swing.JOptionPane.showMessageDialog(this, "Profile deleted successfully!");
+        }
+    }
 
     private void skrIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skrIDActionPerformed
         // TODO add your handling code here:
@@ -319,6 +361,36 @@ public class SkrDashboard extends javax.swing.JFrame {
     private void skrExperienceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skrExperienceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_skrExperienceActionPerformed
+
+    private void viewAllJobsActionPerformed(java.awt.event.ActionEvent evt) {
+        viewjobpage jobView = new viewjobpage();
+        JobController jobController = new JobController(jobView);
+        jobController.showJobsView();
+        this.setVisible(false);
+    }
+
+    private void loadProfileData() {
+        // This is sample data - in a real app, this would come from your database
+        skrName.setText("John Doe");
+        skrID.setText("SKR001");
+        skrContact.setText("+1 234-567-8900");
+        skrEmail.setText("john.doe@email.com");
+        skrAddress.setText("123 Main St, City, Country");
+        skrDOB.setText("1990-01-01");
+        skrExperience.setText("5 years in Software Development");
+        skrSpecialization.setText("Java, Spring Boot, React");
+        skrPortfolio.setText("github.com/johndoe");
+        
+        // Set all fields as non-editable initially
+        skrContact.setEditable(false);
+        skrAddress.setEditable(false);
+        skrEmail.setEditable(false);
+        skrDOB.setEditable(false);
+        skrExperience.setEditable(false);
+        skrSpecialization.setEditable(false);
+        skrPortfolio.setEditable(false);
+        skrID.setEditable(false); // ID should always be non-editable
+    }
 
     /**
      * @param args the command line arguments
