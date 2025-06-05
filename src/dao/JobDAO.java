@@ -1,41 +1,52 @@
 package dao;
 
+import Database.MySqlConnection;
 import Model.Job;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class JobDAO {
-    private List<Job> jobs;
-    
+    private final MySqlConnection dbConnection;
+
     public JobDAO() {
-        jobs = new ArrayList<>();
-        initializeSampleJobs();
+        this.dbConnection = new MySqlConnection();
     }
-    
-    private void initializeSampleJobs() {
-        // Add sample jobs
-        jobs.add(new Job(1, "Senior Software Engineer", 
-            "Lead development of enterprise applications using Java and Spring Boot. Must have 5+ years experience.",
-            "New York, NY", 120000.0f, "2024-03-15", 101));
-            
-        jobs.add(new Job(2, "Data Scientist", 
-            "Analyze large datasets and create ML models for business insights. Experience with Python and TensorFlow required.",
-            "San Francisco, CA", 135000.0f, "2024-03-14", 102));
-            
-        jobs.add(new Job(3, "UX/UI Designer", 
-            "Create intuitive user interfaces for web and mobile applications. Proficient in Figma and Adobe Creative Suite.",
-            "Austin, TX", 95000.0f, "2024-03-14", 103));
-            
-        jobs.add(new Job(4, "DevOps Engineer", 
-            "Manage cloud infrastructure and implement CI/CD pipelines. AWS certification preferred.",
-            "Seattle, WA", 115000.0f, "2024-03-13", 104));
-            
-        jobs.add(new Job(5, "Product Manager", 
-            "Lead product development and coordinate with stakeholders. MBA or equivalent experience required.",
-            "Boston, MA", 125000.0f, "2024-03-13", 105));
-    }
-    
+
     public List<Job> getAllJobs() {
+        List<Job> jobs = new ArrayList<>();
+        Connection conn = null;
+        
+        try {
+            conn = dbConnection.openConnection();
+            String query = "SELECT * FROM jobs";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Job job = new Job(
+                    rs.getInt("id"),
+                    rs.getString("title"),
+                    rs.getString("description"),
+                    rs.getString("location"),
+                    rs.getDouble("salary"),
+                    rs.getString("posteddate"),
+                    rs.getInt("companyid")
+                );
+                jobs.add(job);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,
+                "Error loading job data: " + e.getMessage(),
+                "Database Error",
+                JOptionPane.ERROR_MESSAGE);
+        } finally {
+            if (conn != null) {
+                dbConnection.closeConnection(conn);
+            }
+        }
+        
         return jobs;
     }
     
