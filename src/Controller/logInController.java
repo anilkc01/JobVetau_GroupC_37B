@@ -5,11 +5,11 @@
  */
 package Controller;
 
-import Model.userData;
 import View.Login;
 import View.SkrDashboard;
 import View.companyDashboard;
 import dao.dao;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -34,6 +34,12 @@ public class logInController {
     public void close() {
         this.userView.dispose();
     }
+
+    private static class companyDashboard {
+
+        public companyDashboard() {
+        }
+    }
     
     class AddUserListener implements ActionListener {
 
@@ -54,21 +60,22 @@ public class logInController {
                 }
                 String role = userDao.checkUser(username);
                 
-                if(role.equals("seeker")){
-                 SkrDashboard dashboard = new SkrDashboard();
-                    skrController c = new skrController(dashboard,userDao.logIn(username, password));
-                    c.open();
-
-                }else if(role.equals("company")){ 
-                    companyDashboard dashboard = new companyDashboard();
-                    cmpController c = new cmpController(dashboard,userDao.logIn(username, password));
-                    c.open();
-                }else{
-                    JOptionPane.showMessageDialog(null, "Invalid Credentials");
+                switch (role) {
+                    case "seeker" ->                         {
+                            SkrDashboard dashboard = new SkrDashboard();
+                            skrController c = new skrController(dashboard,userDao.logIn(username, password));
+                            c.open();
+                        }
+                    case "company" ->                         {
+                            companyDashboard dashboard = new companyDashboard();
+                            cmpController c = new cmpController(dashboard,userDao.logIn(username, password));
+                            c.open();
+                        }
+                    default -> JOptionPane.showMessageDialog(null, "Invalid Credentials");
                 }
                 
                 
-            } catch (Exception ex) {
+            } catch (HeadlessException ex) {
                 System.out.println("Error Loggig user: " + ex.getMessage());
             }
         }

@@ -8,7 +8,6 @@ package Controller;
 import Model.seekerData;
 import View.Login;
 import View.SkrDashboard;
-import View.companyDashboard;
 import dao.dao;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -30,7 +29,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author thismac
  */
-public class skrController {
+public final class skrController {
    private final dao  userDao =  new dao();
    private final SkrDashboard userView;
    private final int id;
