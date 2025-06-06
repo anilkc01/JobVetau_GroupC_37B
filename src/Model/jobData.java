@@ -19,6 +19,7 @@ public class jobData {
     private String mode;
     private String postedDate;
     private int companyId;
+    private String companyName;
 
     public jobData(String title, String description, String location, String salary,String mode) {
         this.title = title;
@@ -59,4 +60,13 @@ public class jobData {
 
     public int getCompanyId() { return companyId; }
     public void setCompanyId(int companyId) { this.companyId = companyId; }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+    
 }

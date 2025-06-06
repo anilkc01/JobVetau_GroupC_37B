@@ -16,10 +16,10 @@ import javax.swing.JOptionPane;
  *
  * @author thismac
  */
-public final class ourJobController {
+public class ourJobController {
     private final dao uDao = new dao();
     private final ourJobs jobView;
-    private final jobData job;
+    private jobData job;
             
     public ourJobController(ourJobs jobView, jobData job){
         this.jobView = jobView;

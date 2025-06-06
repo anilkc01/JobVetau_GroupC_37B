@@ -41,6 +41,8 @@ public class jobItem extends javax.swing.JPanel {
         Date = new javax.swing.JLabel();
         Status = new javax.swing.JLabel();
 
+        setPreferredSize(new java.awt.Dimension(503, 145));
+
         Title.setFont(new java.awt.Font("Lucida Grande", 1, 15)); // NOI18N
         Title.setText("Job Title");
 
@@ -101,7 +103,7 @@ public class jobItem extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(Status)
                             .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(39, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cmpName)
@@ -134,7 +136,7 @@ public class jobItem extends javax.swing.JPanel {
                             .addComponent(label)
                             .addComponent(Date))
                         .addComponent(dollarIcon)))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -157,15 +159,15 @@ public class jobItem extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Date;
-    private javax.swing.JTextArea Description;
-    private javax.swing.JLabel Location;
-    private javax.swing.JLabel Mode;
-    private javax.swing.JLabel Salary;
-    private javax.swing.JLabel Status;
-    private javax.swing.JLabel Title;
-    private javax.swing.JButton apply;
-    private javax.swing.JLabel cmpName;
+    public javax.swing.JLabel Date;
+    public javax.swing.JTextArea Description;
+    public javax.swing.JLabel Location;
+    public javax.swing.JLabel Mode;
+    public javax.swing.JLabel Salary;
+    public javax.swing.JLabel Status;
+    public javax.swing.JLabel Title;
+    public javax.swing.JButton apply;
+    public javax.swing.JLabel cmpName;
     private javax.swing.JLabel dollarIcon;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel label;

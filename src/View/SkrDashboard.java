@@ -5,10 +5,8 @@
  */
 package View;
 
-import Controller.JobController;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
-import View.viewjobpage;
 
 /**
  *
@@ -21,7 +19,8 @@ public class SkrDashboard extends javax.swing.JFrame {
      */
     public SkrDashboard() {
         initComponents();
-        loadProfileData(); // Load profile data when dashboard opens
+        jobList.setLayout(new javax.swing.BoxLayout(jobList, javax.swing.BoxLayout.Y_AXIS));
+        jobList.setPreferredSize(null);
     }
 
     /**
@@ -57,7 +56,8 @@ public class SkrDashboard extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         skrDOB = new javax.swing.JFormattedTextField();
-        btnView = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jobList = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,11 +71,13 @@ public class SkrDashboard extends javax.swing.JFrame {
         seekerProfile.setBackground(new java.awt.Color(255, 255, 255));
 
         skrImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/skrLogo.png"))); // NOI18N
+        skrImage.setFocusTraversalKeysEnabled(false);
 
         skrName.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         skrName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         skrName.setText("Name");
 
+        LogOut.setBackground(new java.awt.Color(255, 255, 255));
         LogOut.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         LogOut.setForeground(new java.awt.Color(255, 51, 51));
         LogOut.setText("LogOut");
@@ -177,28 +179,33 @@ public class SkrDashboard extends javax.swing.JFrame {
             .addGroup(seekerProfileLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(seekerProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(seekerProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(skrID, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addComponent(skrContact)
-                    .addComponent(skrEmail)
-                    .addComponent(skrAddress)
-                    .addComponent(skrExperience)
-                    .addComponent(skrSpecialization)
-                    .addComponent(skrPortfolio)
-                    .addComponent(skrDOB)))
+                    .addGroup(seekerProfileLayout.createSequentialGroup()
+                        .addGroup(seekerProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(seekerProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(skrID, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                            .addComponent(skrContact)
+                            .addComponent(skrEmail)
+                            .addComponent(skrAddress)
+                            .addComponent(skrExperience)
+                            .addComponent(skrSpecialization)
+                            .addComponent(skrPortfolio)
+                            .addComponent(skrDOB)))
+                    .addGroup(seekerProfileLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(skrImage, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(seekerProfileLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(seekerProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(skrImage, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(skrName, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LogOut)
                     .addComponent(editSkrProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -207,9 +214,8 @@ public class SkrDashboard extends javax.swing.JFrame {
         seekerProfileLayout.setVerticalGroup(
             seekerProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(seekerProfileLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(skrImage, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(26, 26, 26)
                 .addComponent(skrName)
                 .addGap(18, 18, 18)
                 .addGroup(seekerProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -243,7 +249,7 @@ public class SkrDashboard extends javax.swing.JFrame {
                 .addGroup(seekerProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(skrPortfolio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(editSkrProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -252,44 +258,57 @@ public class SkrDashboard extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        btnView.setBackground(new java.awt.Color(0, 0, 204));
-        btnView.setForeground(new java.awt.Color(255, 255, 255));
-        btnView.setText("View All Jobs");
-        btnView.setFont(new java.awt.Font("Lucida Grande", 1, 18));
-        btnView.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewAllJobsActionPerformed(evt);
-            }
-        });
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane1.setViewportBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jScrollPane1.setMinimumSize(new java.awt.Dimension(675, 475));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(510, 200));
+        jScrollPane1.setSize(new java.awt.Dimension(510, 200));
+
+        jobList.setBackground(new java.awt.Color(161, 195, 247));
+
+        javax.swing.GroupLayout jobListLayout = new javax.swing.GroupLayout(jobList);
+        jobList.setLayout(jobListLayout);
+        jobListLayout.setHorizontalGroup(
+            jobListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jobListLayout.setVerticalGroup(
+            jobListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setViewportView(jobList);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 465, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addContainerGap(155, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)))
                 .addComponent(seekerProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnView)
-                .addGap(570, 570, 570))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(seekerProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 22, Short.MAX_VALUE)
+                        .addComponent(seekerProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10))
         );
 
@@ -309,50 +328,17 @@ public class SkrDashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LogOutActionPerformed(java.awt.event.ActionEvent evt) {
-        // Close current window and show login screen
-        this.dispose();
-        new Login().setVisible(true);
-    }
+    private void LogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LogOutActionPerformed
 
-    private void editSkrProfileActionPerformed(java.awt.event.ActionEvent evt) {
-        // Toggle text fields editability (excluding ID which should remain read-only)
-        skrContact.setEditable(!skrContact.isEditable());
-        skrAddress.setEditable(!skrAddress.isEditable());
-        skrEmail.setEditable(!skrEmail.isEditable());
-        skrDOB.setEditable(!skrDOB.isEditable());
-        skrExperience.setEditable(!skrExperience.isEditable());
-        skrSpecialization.setEditable(!skrSpecialization.isEditable());
-        skrPortfolio.setEditable(!skrPortfolio.isEditable());
-        
-        // Change button text based on state
-        if(skrContact.isEditable()) {
-            editSkrProfile.setText("Save");
-            editSkrProfile.setForeground(new java.awt.Color(0, 153, 51));  // Green color
-        } else {
-            editSkrProfile.setText("Edit");
-            editSkrProfile.setForeground(new java.awt.Color(102, 204, 0));
-            // Here you would typically save the changes to your database
-            javax.swing.JOptionPane.showMessageDialog(this, "Profile updated successfully!");
-        }
-    }
+    private void editSkrProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editSkrProfileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editSkrProfileActionPerformed
 
-    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {
-        int confirm = javax.swing.JOptionPane.showConfirmDialog(
-            this,
-            "Are you sure you want to delete your profile? This action cannot be undone.",
-            "Confirm Delete",
-            javax.swing.JOptionPane.YES_NO_OPTION,
-            javax.swing.JOptionPane.WARNING_MESSAGE
-        );
-        
-        if (confirm == javax.swing.JOptionPane.YES_OPTION) {
-            // Here you would typically delete the profile from your database
-            this.dispose();
-            new Login().setVisible(true);
-            javax.swing.JOptionPane.showMessageDialog(this, "Profile deleted successfully!");
-        }
-    }
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void skrIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skrIDActionPerformed
         // TODO add your handling code here:
@@ -361,36 +347,6 @@ public class SkrDashboard extends javax.swing.JFrame {
     private void skrExperienceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skrExperienceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_skrExperienceActionPerformed
-
-    private void viewAllJobsActionPerformed(java.awt.event.ActionEvent evt) {
-        viewjobpage jobView = new viewjobpage();
-        JobController jobController = new JobController(jobView);
-        jobController.showJobsView();
-        this.setVisible(false);
-    }
-
-    private void loadProfileData() {
-        // This is sample data - in a real app, this would come from your database
-        skrName.setText("John Doe");
-        skrID.setText("SKR001");
-        skrContact.setText("+1 234-567-8900");
-        skrEmail.setText("john.doe@email.com");
-        skrAddress.setText("123 Main St, City, Country");
-        skrDOB.setText("1990-01-01");
-        skrExperience.setText("5 years in Software Development");
-        skrSpecialization.setText("Java, Spring Boot, React");
-        skrPortfolio.setText("github.com/johndoe");
-        
-        // Set all fields as non-editable initially
-        skrContact.setEditable(false);
-        skrAddress.setEditable(false);
-        skrEmail.setEditable(false);
-        skrDOB.setEditable(false);
-        skrExperience.setEditable(false);
-        skrSpecialization.setEditable(false);
-        skrPortfolio.setEditable(false);
-        skrID.setEditable(false); // ID should always be non-editable
-    }
 
     /**
      * @param args the command line arguments
@@ -430,7 +386,6 @@ public class SkrDashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LogOut;
     private javax.swing.JLabel Logo;
-    private javax.swing.JButton btnView;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton editSkrProfile;
     private javax.swing.JLabel jLabel1;
@@ -442,6 +397,8 @@ public class SkrDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JPanel jobList;
     private javax.swing.JPanel seekerProfile;
     private javax.swing.JTextField skrAddress;
     private javax.swing.JTextField skrContact;
@@ -449,7 +406,7 @@ public class SkrDashboard extends javax.swing.JFrame {
     private javax.swing.JTextField skrEmail;
     private javax.swing.JTextField skrExperience;
     private javax.swing.JTextField skrID;
-    private javax.swing.JLabel skrImage;
+    public javax.swing.JLabel skrImage;
     private javax.swing.JLabel skrName;
     private javax.swing.JTextField skrPortfolio;
     private javax.swing.JTextField skrSpecialization;
