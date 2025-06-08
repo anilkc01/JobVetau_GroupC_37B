@@ -112,7 +112,7 @@ public class cmpController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-             addJob jobForm = new addJob();
+            addJob jobForm = new addJob();
 
             int result = JOptionPane.showConfirmDialog(
                     null,

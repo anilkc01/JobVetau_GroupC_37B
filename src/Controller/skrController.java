@@ -5,10 +5,8 @@
  */
 package Controller;
 
-import Model.seekerData;
-import View.Login;
-import View.SkrDashboard;
-import View.companyDashboard;
+import Model.*;
+import View.*;
 import dao.dao;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -20,7 +18,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -35,7 +35,9 @@ public class skrController {
    private final SkrDashboard userView;
    private final int id;
    seekerData seeker = null;
+   private ArrayList<jobData> jobs = null;
    private static final String UPLOAD_DIR = "Assets";
+   public javax.swing.JPanel jobsContainer;
    
    public skrController(SkrDashboard userView,int id) {
         this.userView = userView;
@@ -81,6 +83,7 @@ public class skrController {
         } else {
             userView.skrImage().setIcon(new ImageIcon(getClass().getResource("/Assets/skrLogo.png")));
         }
+        loadJobs();
     }
     
     
@@ -167,32 +170,31 @@ public class skrController {
         }
     }
     
-        private class editOrSave implements ActionListener {
+    private class editOrSave implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             String pLabel = userView.getEditBtn().getText();
-                if(pLabel.equals("Edit")){
-                    userView.getEditBtn().setText("Save");
-                    setEditable(true);
-                }else{
-                    userView.getEditBtn().setText("Edit");
-                    setEditable(false);
-                    seeker.setIdNo(userView.skrID().getText());
-                    seeker.setNumber(userView.skrContact().getText());
-                    seeker.setEmail(userView.skrEmail().getText());
-                    seeker.setAddress(userView.skrAddress().getText());
-                    System.out.println(userView.skrDOB().getText());
-                    System.out.println(userView.skrDOB().getText().trim());
-                    seeker.setDOB(userView.skrDOB().getText().equals("    -  -  ")? null:userView.skrDOB().getText());
-                    seeker.setExperience(userView.skrExperience().getText());
-                    seeker.setSpecialization(userView.skrSpecialization().getText());
-                    seeker.setProtfolio(userView.skrPortfolio().getText());
-                   userDao.updateSeeker(seeker);
-                    getSetValues();
-                    
+            if (pLabel.equals("Edit")) {
+                userView.getEditBtn().setText("Save");
+                setEditable(true);
+            } else {
+                userView.getEditBtn().setText("Edit");
+                setEditable(false);
+                seeker.setIdNo(userView.skrID().getText());
+                seeker.setNumber(userView.skrContact().getText());
+                seeker.setEmail(userView.skrEmail().getText());
+                seeker.setAddress(userView.skrAddress().getText());
+                System.out.println(userView.skrDOB().getText());
+                System.out.println(userView.skrDOB().getText().trim());
+                seeker.setDOB(userView.skrDOB().getText().equals("    -  -  ") ? null : userView.skrDOB().getText());
+                seeker.setExperience(userView.skrExperience().getText());
+                seeker.setSpecialization(userView.skrSpecialization().getText());
+                seeker.setProtfolio(userView.skrPortfolio().getText());
+                userDao.updateSeeker(seeker);
+                getSetValues();
 
-                }
+            }
         }
     }
         
@@ -208,4 +210,23 @@ public class skrController {
         
         
     }
+    
+        public void loadJobs() {
+        jobs = userDao.getAllJobs();
+        System.out.println("Number of jobs retrieved: " + jobs.size()); 
+        jobsContainer = userView.jobList;
+        jobsContainer.removeAll();
+
+        for (jobData job : jobs) {
+            System.out.println("Job: " + job.getTitle());
+            jobItem jobPanel = new jobItem();
+            new jobItemController(jobPanel, job);
+            jobsContainer.add(jobPanel);
+            jobsContainer.add(Box.createVerticalStrut(10));
+        }
+
+        jobsContainer.revalidate();
+        jobsContainer.repaint();
+    }
+   
 }

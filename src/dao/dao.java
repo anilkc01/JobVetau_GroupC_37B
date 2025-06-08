@@ -427,4 +427,47 @@ public class dao {
             return false; // Return false on error
         }
     }
+    
+    public ArrayList<jobData> getAllJobs() {
+        ArrayList<jobData> jobList = new ArrayList<>();
+        MySqlConnection mySql = new MySqlConnection();
+        Connection conn = mySql.openConnection();
+
+        try {
+            String sql = "SELECT j.id, j.title, j.description, j.location, j.salary, j.mode, "
+                    + "j.posted_date, j.company_id, u.name AS company_name "
+                    + "FROM jobs j "
+                    + "JOIN companies c ON j.company_id = c.id "
+                    + "JOIN users u ON c.id = u.id";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                jobData job = new jobData(
+                        rs.getString("title"),
+                        rs.getString("description"),
+                        rs.getString("location"),
+                        rs.getString("salary"),
+                        rs.getString("mode")
+                );
+
+                job.setId(rs.getInt("id"));
+                job.setPostedDate(rs.getString("posted_date"));
+                job.setCompanyId(rs.getInt("company_id"));
+                job.setCompanyName(rs.getString("company_name"));
+
+                jobList.add(job);
+            }
+
+            rs.close();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace(); // Log or handle as needed
+        }
+
+        return jobList;
+    }
+        
 }
