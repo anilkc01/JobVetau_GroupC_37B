@@ -33,6 +33,17 @@ public class SkrDashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        Title = new javax.swing.JLabel();
+        Description = new javax.swing.JTextArea();
+        Location = new javax.swing.JLabel();
+        Mode = new javax.swing.JLabel();
+        Salary = new javax.swing.JLabel();
+        locationIcon = new javax.swing.JLabel();
+        dollarIcon = new javax.swing.JLabel();
+        viewApplications = new javax.swing.JButton();
+        deleteJob = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         Logo = new javax.swing.JLabel();
         seekerProfile = new javax.swing.JPanel();
@@ -57,7 +68,132 @@ public class SkrDashboard extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         skrDOB = new javax.swing.JFormattedTextField();
-        btnView = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel5 = new javax.swing.JPanel();
+        Title1 = new javax.swing.JLabel();
+        Description1 = new javax.swing.JTextArea();
+        Location1 = new javax.swing.JLabel();
+        Mode1 = new javax.swing.JLabel();
+        Salary1 = new javax.swing.JLabel();
+        locationIcon1 = new javax.swing.JLabel();
+        dollarIcon1 = new javax.swing.JLabel();
+        viewApplications1 = new javax.swing.JButton();
+        deleteJob1 = new javax.swing.JButton();
+        Mode2 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        Title2 = new javax.swing.JLabel();
+        Description2 = new javax.swing.JTextArea();
+        Location2 = new javax.swing.JLabel();
+        Mode3 = new javax.swing.JLabel();
+        Salary2 = new javax.swing.JLabel();
+        locationIcon2 = new javax.swing.JLabel();
+        dollarIcon2 = new javax.swing.JLabel();
+        Mode4 = new javax.swing.JLabel();
+        viewApplications4 = new javax.swing.JButton();
+        deleteJob4 = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        Title3 = new javax.swing.JLabel();
+        Description3 = new javax.swing.JTextArea();
+        Location3 = new javax.swing.JLabel();
+        Mode5 = new javax.swing.JLabel();
+        Salary3 = new javax.swing.JLabel();
+        locationIcon3 = new javax.swing.JLabel();
+        dollarIcon3 = new javax.swing.JLabel();
+        Mode6 = new javax.swing.JLabel();
+        deleteJob5 = new javax.swing.JButton();
+        viewApplications5 = new javax.swing.JButton();
+
+        Title.setFont(new java.awt.Font("Lucida Grande", 1, 15)); // NOI18N
+        Title.setText("Job Title");
+
+        Description.setBackground(new java.awt.Color(238, 238, 238));
+        Description.setColumns(20);
+        Description.setLineWrap(true);
+
+        Location.setText("Location");
+
+        Mode.setText("Mode");
+
+        Salary.setText("Salary");
+
+        locationIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Location.png"))); // NOI18N
+
+        dollarIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/dollar.png"))); // NOI18N
+
+        viewApplications.setForeground(new java.awt.Color(51, 204, 0));
+        viewApplications.setText("Applications");
+
+        deleteJob.setForeground(new java.awt.Color(255, 0, 0));
+        deleteJob.setText("Delete");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(39, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(locationIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5)
+                                .addComponent(Location)
+                                .addGap(90, 90, 90)
+                                .addComponent(Mode)
+                                .addGap(90, 90, 90)
+                                .addComponent(dollarIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5)
+                                .addComponent(Salary)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(deleteJob))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(Title)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(viewApplications)))
+                        .addGap(10, 10, 10))))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Title)
+                    .addComponent(viewApplications))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(Salary)
+                        .addComponent(locationIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Mode)
+                            .addComponent(Location)))
+                    .addComponent(dollarIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteJob))
+                .addContainerGap(10, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -252,52 +388,299 @@ public class SkrDashboard extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        btnView.setBackground(new java.awt.Color(0, 0, 204));
-        btnView.setForeground(new java.awt.Color(255, 255, 255));
-        btnView.setText("View All Jobs");
-        btnView.setFont(new java.awt.Font("Lucida Grande", 1, 18));
-        btnView.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewAllJobsActionPerformed(evt);
-            }
-        });
+        Title1.setFont(new java.awt.Font("Lucida Grande", 1, 15)); // NOI18N
+        Title1.setText("Software Engineer");
+
+        Description1.setBackground(new java.awt.Color(238, 238, 238));
+        Description1.setColumns(20);
+        Description1.setLineWrap(true);
+
+        Location1.setText("Imadol,Lalitpur");
+
+        Mode1.setText("Full-Time");
+
+        Salary1.setText("50000");
+
+        locationIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Location.png"))); // NOI18N
+
+        dollarIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/dollar.png"))); // NOI18N
+
+        viewApplications1.setForeground(new java.awt.Color(51, 204, 0));
+        viewApplications1.setText("Applications");
+
+        deleteJob1.setForeground(new java.awt.Color(255, 0, 0));
+        deleteJob1.setText("Delete");
+
+        Mode2.setText("Designs, develops, and maintains software systems to solve problems or improve efficiency.");
+
+        Title2.setFont(new java.awt.Font("Lucida Grande", 1, 15)); // NOI18N
+        Title2.setText("Software Engineer");
+
+        Description2.setBackground(new java.awt.Color(238, 238, 238));
+        Description2.setColumns(20);
+        Description2.setLineWrap(true);
+
+        Location2.setText("Imadol,Lalitpur");
+
+        Mode3.setText("Full-Time");
+
+        Salary2.setText("50000");
+
+        locationIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Location.png"))); // NOI18N
+
+        dollarIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/dollar.png"))); // NOI18N
+
+        Mode4.setText("Designs, develops, and maintains software systems to solve problems or improve efficiency.");
+
+        viewApplications4.setForeground(new java.awt.Color(51, 204, 0));
+        viewApplications4.setText("Applications");
+
+        deleteJob4.setForeground(new java.awt.Color(255, 0, 0));
+        deleteJob4.setText("Delete");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Mode4)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(locationIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(Location2)
+                        .addGap(90, 90, 90)
+                        .addComponent(Mode3)
+                        .addGap(90, 90, 90)
+                        .addComponent(dollarIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(Salary2))
+                    .addComponent(Title2))
+                .addGap(92, 92, 92)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(deleteJob4, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(viewApplications4, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Description2, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(610, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(Title2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Description2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Mode4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Salary2)
+                                .addComponent(locationIcon2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(Mode3)
+                                    .addComponent(Location2)))
+                            .addComponent(dollarIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(viewApplications4)
+                        .addGap(32, 32, 32)
+                        .addComponent(deleteJob4)))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        Title3.setFont(new java.awt.Font("Lucida Grande", 1, 15)); // NOI18N
+        Title3.setText("Software Engineer");
+
+        Description3.setBackground(new java.awt.Color(238, 238, 238));
+        Description3.setColumns(20);
+        Description3.setLineWrap(true);
+
+        Location3.setText("Imadol,Lalitpur");
+
+        Mode5.setText("Full-Time");
+
+        Salary3.setText("50000");
+
+        locationIcon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Location.png"))); // NOI18N
+
+        dollarIcon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/dollar.png"))); // NOI18N
+
+        Mode6.setText("Designs, develops, and maintains software systems to solve problems or improve efficiency.");
+
+        deleteJob5.setForeground(new java.awt.Color(255, 0, 0));
+        deleteJob5.setText("Delete");
+
+        viewApplications5.setForeground(new java.awt.Color(51, 204, 0));
+        viewApplications5.setText("Applications");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Mode6)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(locationIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5)
+                                .addComponent(Location3)
+                                .addGap(90, 90, 90)
+                                .addComponent(Mode5)
+                                .addGap(90, 90, 90)
+                                .addComponent(dollarIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5)
+                                .addComponent(Salary3))))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Title3)))
+                .addGap(93, 93, 93)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(deleteJob5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(viewApplications5, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Description3, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(599, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Title3)
+                .addGap(9, 9, 9)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(Mode6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Salary3)
+                                .addComponent(locationIcon3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(Mode5)
+                                    .addComponent(Location3)))
+                            .addComponent(dollarIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(66, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(Description3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(viewApplications5)
+                .addGap(32, 32, 32)
+                .addComponent(deleteJob5)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Mode2)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(locationIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5)
+                                .addComponent(Location1)
+                                .addGap(90, 90, 90)
+                                .addComponent(Mode1)
+                                .addGap(90, 90, 90)
+                                .addComponent(dollarIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5)
+                                .addComponent(Salary1))
+                            .addComponent(Title1))
+                        .addGap(74, 74, 74)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(deleteJob1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(viewApplications1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Description1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10))))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(Title1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Description1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Mode2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Salary1)
+                                .addComponent(locationIcon1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(Mode1)
+                                    .addComponent(Location1)))
+                            .addComponent(dollarIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(viewApplications1)
+                        .addGap(32, 32, 32)
+                        .addComponent(deleteJob1)))
+                .addGap(25, 25, 25)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+
+        jScrollPane1.setViewportView(jPanel5);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 465, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(seekerProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
+                    .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 709, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(75, 75, 75)
+                .addComponent(seekerProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnView)
-                .addGap(570, 570, 570))
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(38, Short.MAX_VALUE)
                 .addComponent(seekerProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1077, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -428,10 +811,40 @@ public class SkrDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea Description;
+    private javax.swing.JTextArea Description1;
+    private javax.swing.JTextArea Description2;
+    private javax.swing.JTextArea Description3;
+    private javax.swing.JLabel Location;
+    private javax.swing.JLabel Location1;
+    private javax.swing.JLabel Location2;
+    private javax.swing.JLabel Location3;
     private javax.swing.JButton LogOut;
     private javax.swing.JLabel Logo;
-    private javax.swing.JButton btnView;
+    private javax.swing.JLabel Mode;
+    private javax.swing.JLabel Mode1;
+    private javax.swing.JLabel Mode2;
+    private javax.swing.JLabel Mode3;
+    private javax.swing.JLabel Mode4;
+    private javax.swing.JLabel Mode5;
+    private javax.swing.JLabel Mode6;
+    private javax.swing.JLabel Salary;
+    private javax.swing.JLabel Salary1;
+    private javax.swing.JLabel Salary2;
+    private javax.swing.JLabel Salary3;
+    private javax.swing.JLabel Title;
+    private javax.swing.JLabel Title1;
+    private javax.swing.JLabel Title2;
+    private javax.swing.JLabel Title3;
     private javax.swing.JButton deleteBtn;
+    private javax.swing.JButton deleteJob;
+    private javax.swing.JButton deleteJob1;
+    private javax.swing.JButton deleteJob4;
+    private javax.swing.JButton deleteJob5;
+    private javax.swing.JLabel dollarIcon;
+    private javax.swing.JLabel dollarIcon1;
+    private javax.swing.JLabel dollarIcon2;
+    private javax.swing.JLabel dollarIcon3;
     private javax.swing.JButton editSkrProfile;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -442,6 +855,16 @@ public class SkrDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel locationIcon;
+    private javax.swing.JLabel locationIcon1;
+    private javax.swing.JLabel locationIcon2;
+    private javax.swing.JLabel locationIcon3;
     private javax.swing.JPanel seekerProfile;
     private javax.swing.JTextField skrAddress;
     private javax.swing.JTextField skrContact;
@@ -453,6 +876,10 @@ public class SkrDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel skrName;
     private javax.swing.JTextField skrPortfolio;
     private javax.swing.JTextField skrSpecialization;
+    private javax.swing.JButton viewApplications;
+    private javax.swing.JButton viewApplications1;
+    private javax.swing.JButton viewApplications4;
+    private javax.swing.JButton viewApplications5;
     // End of variables declaration//GEN-END:variables
 
     public javax.swing.JLabel skrImage(){return skrImage;}
