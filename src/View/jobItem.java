@@ -5,6 +5,8 @@
  */
 package View;
 
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author thismac
@@ -173,4 +175,8 @@ public class jobItem extends javax.swing.JPanel {
     private javax.swing.JLabel label;
     private javax.swing.JLabel locationIcon;
     // End of variables declaration//GEN-END:variables
+    public void listenApply(ActionListener listener){
+        apply.addActionListener(listener);
+    }
+
 }
