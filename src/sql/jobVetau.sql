@@ -46,6 +46,8 @@ CREATE TABLE jobs (
     company_id INT NOT NULL,
     FOREIGN KEY (company_id) REFERENCES companies(id) ON DELETE CASCADE
 );
+
+
 CREATE TABLE applications (
     id INT PRIMARY KEY AUTO_INCREMENT,
     seeker_id INT NOT NULL,
@@ -54,8 +56,9 @@ CREATE TABLE applications (
     FOREIGN KEY (seeker_id) REFERENCES seekers(id) ON DELETE CASCADE,
     FOREIGN KEY (job_id) REFERENCES jobs(id) ON DELETE CASCADE
 );
-SELECT * FROM applications;
-UPDATE  applications SET status = "Rejected" WHERE id = 2;
+
+
+-- Procedure to get all jobs posted by a company
 DELIMITER //
 
 CREATE PROCEDURE getJobs(IN seekerId INT)
@@ -73,6 +76,8 @@ BEGIN
 END //
 DELIMITER ;
 
+
+-- procedure to get applied jobs by a seeker
 DELIMITER //
 CREATE PROCEDURE getAppliedJobs(IN seekerId INT)
 BEGIN
