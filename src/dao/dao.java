@@ -428,28 +428,91 @@ public class dao {
         }
     }
     
-    public ArrayList<jobData> getAllJobs() {
-        ArrayList<jobData> jobList = new ArrayList<>();
+    public boolean addApplication(applicationData application) {
+        MySqlConnection mySql = new MySqlConnection();
+        Connection conn = mySql.openConnection();
+        boolean success = false;
+
+        try {
+            String sql = "INSERT INTO applications (seeker_id, job_id, status) VALUES (?, ?, ?)";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, application.getSeekerId());
+            ps.setInt(2, application.getJobId());
+            ps.setString(3, application.getStatus() != null ? application.getStatus() : "Pending");
+
+            int rowsAffected = ps.executeUpdate();
+            success = rowsAffected > 0;
+
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            mySql.closeConnection(conn);
+        }
+
+        return success;
+    }
+    
+    public ArrayList<appliedJobData> getJobs(int seekerId) {
+        ArrayList<appliedJobData> jobList = new ArrayList<>();
         MySqlConnection mySql = new MySqlConnection();
         Connection conn = mySql.openConnection();
 
         try {
-            String sql = "SELECT j.id, j.title, j.description, j.location, j.salary, j.mode, "
-                    + "j.posted_date, j.company_id, u.name AS company_name "
-                    + "FROM jobs j "
-                    + "JOIN companies c ON j.company_id = c.id "
-                    + "JOIN users u ON c.id = u.id";
-
+            String sql = "CALL getJobs(?)";
             PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, seekerId);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                jobData job = new jobData(
+                appliedJobData job = new appliedJobData(
                         rs.getString("title"),
                         rs.getString("description"),
                         rs.getString("location"),
                         rs.getString("salary"),
-                        rs.getString("mode")
+                        rs.getString("mode"),
+                        "null"
+                );
+
+                job.setId(rs.getInt("id"));
+                job.setPostedDate(rs.getString("posted_date"));
+                job.setCompanyId(rs.getInt("company_id"));
+                job.setCompanyName(rs.getString("company_name"));
+                
+               
+                jobList.add(job);
+            }
+
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            mySql.closeConnection(conn);
+        }
+
+        return jobList;
+    }
+
+    public ArrayList<appliedJobData> getAppliedJobs(int seekerId) {
+        ArrayList<appliedJobData> jobList = new ArrayList<>();
+        MySqlConnection mySql = new MySqlConnection();
+        Connection conn = mySql.openConnection();
+
+        try {
+            String sql = "CALL getAppliedJobs(?)";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, seekerId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                appliedJobData job = new appliedJobData(
+                        rs.getString("title"),
+                        rs.getString("description"),
+                        rs.getString("location"),
+                        rs.getString("salary"),
+                        rs.getString("mode"),
+                        rs.getString("status")
                 );
 
                 job.setId(rs.getInt("id"));
@@ -462,12 +525,37 @@ public class dao {
 
             rs.close();
             ps.close();
-
         } catch (Exception e) {
-            e.printStackTrace(); // Log or handle as needed
+            e.printStackTrace();
+        } finally {
+            mySql.closeConnection(conn);
         }
 
         return jobList;
+    }
+
+    public boolean withdrawApplication(int seekerId, int jobId) {
+        MySqlConnection mySql = new MySqlConnection();
+        Connection conn = mySql.openConnection();
+        boolean success = false;
+
+        try {
+            String sql = "DELETE FROM applications WHERE seeker_id = ? AND job_id = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, seekerId);
+            ps.setInt(2, jobId);
+
+            int rowsAffected = ps.executeUpdate();
+            success = rowsAffected > 0;
+
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            mySql.closeConnection(conn);
+        }
+
+        return success;
     }
         
 }

@@ -35,7 +35,7 @@ public class skrController {
    private final SkrDashboard userView;
    private final int id;
    seekerData seeker = null;
-   private ArrayList<jobData> jobs = null;
+   private ArrayList<appliedJobData> jobs = null;
    private static final String UPLOAD_DIR = "Assets";
    public javax.swing.JPanel jobsContainer;
    
@@ -46,6 +46,7 @@ public class skrController {
         userView.logOutListener(new logOut());
         userView.logoClickListener(new logoClick());
         userView.deleteListener(new delete());
+        userView.toggleListener(new toggler());
          new File(UPLOAD_DIR).mkdirs();
         getSetValues();
     }
@@ -95,6 +96,21 @@ public class skrController {
             logInController c = new logInController(loginPage);
             c.open();
         }
+    }
+
+    private class toggler implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(userView.jAToggle.getText().equals("My Applications")){
+                userView.jAToggle.setText("All Jobs");
+                loadApplications();
+            }else{
+                userView.jAToggle.setText("My Applications");
+                loadJobs();
+            }
+        }
+
     }
 
     private class delete implements ActionListener {
@@ -211,16 +227,16 @@ public class skrController {
         
     }
     
-        public void loadJobs() {
-        jobs = userDao.getAllJobs();
-        System.out.println("Number of jobs retrieved: " + jobs.size()); 
+    public void loadJobs() {
+        jobs = userDao.getJobs(id);
+        System.out.println("Number of jobs retrieved: " + jobs.size());
         jobsContainer = userView.jobList;
         jobsContainer.removeAll();
 
-        for (jobData job : jobs) {
+        for (appliedJobData job : jobs) {
             System.out.println("Job: " + job.getTitle());
             jobItem jobPanel = new jobItem();
-            new jobItemController(jobPanel, job);
+            new jobItemController(jobPanel, job,id);
             jobsContainer.add(jobPanel);
             jobsContainer.add(Box.createVerticalStrut(10));
         }
@@ -228,5 +244,24 @@ public class skrController {
         jobsContainer.revalidate();
         jobsContainer.repaint();
     }
-   
+    
+    public void loadApplications(){
+        jobs = userDao.getAppliedJobs(id);
+        System.out.println("Number of jobs retrieved: " + jobs.size());
+        jobsContainer = userView.jobList;
+        jobsContainer.removeAll();
+
+        for (appliedJobData job : jobs) {
+            System.out.println("Job: " + job.getTitle());
+            jobItem jobPanel = new jobItem();
+            new jobItemController(jobPanel, job,id);
+            jobsContainer.add(jobPanel);
+            jobsContainer.add(Box.createVerticalStrut(10));
+        }
+
+        jobsContainer.revalidate();
+        jobsContainer.repaint();
+    
+    }
+
 }
