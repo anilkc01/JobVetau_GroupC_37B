@@ -19,7 +19,6 @@ import javax.swing.JOptionPane;
 public class ourJobController {
     private final dao uDao = new dao();
     private final ourJobs jobView;
-    private int uid;
     private jobData job;
             
     public ourJobController(ourJobs jobView, jobData job){
