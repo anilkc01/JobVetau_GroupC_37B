@@ -41,10 +41,9 @@ public class Admin extends javax.swing.JFrame {
         jButton2.setText("Seekers");
 
         jButton3.setText("Jobs");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
+          private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
+        System.out.println("Jobs button clicked!"); 
+    }
         });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
