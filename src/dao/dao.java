@@ -453,15 +453,16 @@ public class dao {
         return success;
     }
     
-    public ArrayList<appliedJobData> getJobs(int seekerId) {
+    public ArrayList<appliedJobData> getJobs(int seekerId, String sortOrder) {
         ArrayList<appliedJobData> jobList = new ArrayList<>();
         MySqlConnection mySql = new MySqlConnection();
         Connection conn = mySql.openConnection();
 
         try {
-            String sql = "CALL getJobs(?)";
+            String sql = "CALL getJobs(?, ?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, seekerId);
+            ps.setString(2, sortOrder);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -478,8 +479,6 @@ public class dao {
                 job.setPostedDate(rs.getString("posted_date"));
                 job.setCompanyId(rs.getInt("company_id"));
                 job.setCompanyName(rs.getString("company_name"));
-                
-               
                 jobList.add(job);
             }
 
@@ -493,6 +492,49 @@ public class dao {
 
         return jobList;
     }
+
+
+    public ArrayList<appliedJobData> searchJobs(int seekerId, String searchTerm, String sortOrder) {
+        ArrayList<appliedJobData> jobList = new ArrayList<>();
+        MySqlConnection mySql = new MySqlConnection();
+        Connection conn = mySql.openConnection();
+
+        try {
+            String sql = "CALL searchJobs(?, ?, ?)";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, seekerId);
+            ps.setString(2, searchTerm);
+            ps.setString(3, sortOrder);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                appliedJobData job = new appliedJobData(
+                        rs.getString("title"),
+                        rs.getString("description"),
+                        rs.getString("location"),
+                        rs.getString("salary"),
+                        rs.getString("mode"),
+                        "null"
+                );
+
+                job.setId(rs.getInt("id"));
+                job.setPostedDate(rs.getString("posted_date"));
+                job.setCompanyId(rs.getInt("company_id"));
+                job.setCompanyName(rs.getString("company_name"));
+                jobList.add(job);
+            }
+
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            mySql.closeConnection(conn);
+        }
+
+        return jobList;
+    }
+
 
     public ArrayList<appliedJobData> getAppliedJobs(int seekerId) {
         ArrayList<appliedJobData> jobList = new ArrayList<>();
@@ -557,5 +599,152 @@ public class dao {
 
         return success;
     }
+    
+    public ArrayList<companyData> getAllCompanies() {
+          MySqlConnection mySql = new MySqlConnection();
+        Connection conn = mySql.openConnection();
+        ArrayList<companyData> companies = new ArrayList<>();
+        String query = "SELECT u.id, c.photo, u.name, u.email, u.number, u.address "
+                + "FROM users u JOIN companies c ON u.id = c.id";
+
+        try (PreparedStatement stmt = conn.prepareStatement(query);
+                ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                companyData company = new companyData(
+                        rs.getString("name"),
+                        "", // username (not required)
+                        rs.getString("number"),
+                        rs.getString("email"),
+                        rs.getString("address"),
+                        "", // role (not required)
+                        "", // password (not required)
+                        rs.getString("photo"),
+                        "", 0, "", "", "", "" // other fields not needed
+                );
+                company.setId(rs.getInt("id"));
+                companies.add(company);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally{
+            mySql.closeConnection(conn);
+        }
+        return companies;
+    }
+
+    public ArrayList<seekerData> getAllSeekers() {
+          MySqlConnection mySql = new MySqlConnection();
+        Connection conn = mySql.openConnection();
+        ArrayList<seekerData> seekers = new ArrayList<>();
+        String query = "SELECT u.id, s.photo, u.name, u.email, u.number, u.address "
+                + "FROM users u JOIN seekers s ON u.id = s.id";
+
+        try (PreparedStatement stmt = conn.prepareStatement(query);
+                ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                seekerData seeker = new seekerData(
+                        rs.getString("photo"),
+                        "", "", "", "", "", // extra seeker fields
+                        rs.getString("name"),
+                        "", // username
+                        rs.getString("number"),
+                        rs.getString("email"),
+                        rs.getString("address"),
+                        "", // role
+                        "" // password
+                );
+                seeker.setId(rs.getInt("id"));
+                seekers.add(seeker);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally{
+            mySql.closeConnection(conn);
+        }
+        return seekers;
+    }
+
+    public ArrayList<jobData> getAllJobs() {
+        MySqlConnection mySql = new MySqlConnection();
+        Connection conn = mySql.openConnection();
+        ArrayList<jobData> jobs = new ArrayList<>();
+        String query = "SELECT j.id, j.title, j.description, j.location, j.mode, j.salary, u.name AS company_name "
+                + "FROM jobs j JOIN companies c ON j.company_id = c.id "
+                + "JOIN users u ON c.id = u.id";
+
+        try (PreparedStatement stmt = conn.prepareStatement(query);
+                ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                jobData job = new jobData(
+                        rs.getString("title"),
+                        rs.getString("description"),
+                        rs.getString("location"),
+                        rs.getString("salary"),
+                        rs.getString("mode")
+                );
+                job.setId(rs.getInt("id"));
+                job.setCompanyName(rs.getString("company_name"));
+                jobs.add(job);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally{
+            mySql.closeConnection(conn);
+        }
+        return jobs;
+    }
+
+    public ArrayList<applicationData> getApplications(int jobId) {
+        MySqlConnection mySql = new MySqlConnection();
+        Connection conn = mySql.openConnection();
         
+        ArrayList<applicationData> applications = new ArrayList<>();
+        String sql = "SELECT * FROM applications WHERE job_id = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, jobId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                applicationData app = new applicationData(
+                    rs.getInt("seeker_id"),
+                    rs.getInt("job_id"),
+                    rs.getString("status")
+                );
+                app.setId(rs.getInt("id"));
+                applications.add(app);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return applications;
+    }
+        
+    public boolean updateStatus(int id, String status) {
+
+        MySqlConnection mySql = new MySqlConnection();
+        Connection conn = mySql.openConnection();
+
+        String sql = "{CALL update_status(?, ?)}";
+
+        try (CallableStatement stmt = conn.prepareCall(sql)) {
+            stmt.setInt(1, id);
+            stmt.setString(2, status);
+
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0; // true if update was successful
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

@@ -10,7 +10,7 @@ CREATE TABLE users (
     role VARCHAR(10),
     password VARCHAR(255)
 );
-SELECT * FROM users;
+
 CREATE TABLE companies (
     id INT PRIMARY KEY,
     photo VARCHAR(255),
@@ -46,6 +46,8 @@ CREATE TABLE jobs (
     company_id INT NOT NULL,
     FOREIGN KEY (company_id) REFERENCES companies(id) ON DELETE CASCADE
 );
+
+
 CREATE TABLE applications (
     id INT PRIMARY KEY AUTO_INCREMENT,
     seeker_id INT NOT NULL,
@@ -54,24 +56,69 @@ CREATE TABLE applications (
     FOREIGN KEY (seeker_id) REFERENCES seekers(id) ON DELETE CASCADE,
     FOREIGN KEY (job_id) REFERENCES jobs(id) ON DELETE CASCADE
 );
-SELECT * FROM applications;
-UPDATE  applications SET status = "Rejected" WHERE id = 2;
+
+
+
 DELIMITER //
 
-CREATE PROCEDURE getJobs(IN seekerId INT)
+CREATE PROCEDURE getJobs(
+    IN seekerId INT,
+    IN sortOrder VARCHAR(4)
+)
 BEGIN
-    SELECT j.id, j.title, j.description, j.location, j.salary, j.mode, 
-           j.posted_date, j.company_id, u.name AS company_name
-    FROM jobs j
-    JOIN companies c ON j.company_id = c.id
-    JOIN users u ON c.id = u.id
-    WHERE j.id NOT IN (
-        SELECT job_id 
-        FROM applications 
-        WHERE seeker_id = seekerId
+    SET @sql = CONCAT(
+        'SELECT j.id, j.title, j.description, j.location, j.salary, j.salary_value, j.mode, 
+                j.posted_date, j.company_id, u.name AS company_name
+         FROM jobs j
+         JOIN companies c ON j.company_id = c.id
+         JOIN users u ON c.id = u.id
+         WHERE j.id NOT IN (
+             SELECT job_id FROM applications WHERE seeker_id = ', seekerId, '
+         )
+         ORDER BY j.salary_value ', sortOrder
     );
+
+    PREPARE stmt FROM @sql;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
 END //
+
 DELIMITER ;
+
+
+DELIMITER //
+
+CREATE PROCEDURE searchJobs(
+    IN seekerId INT,
+    IN searchTerm VARCHAR(100),
+    IN sortOrder VARCHAR(4)
+)
+BEGIN
+    SET @sql = CONCAT(
+        'SELECT j.id, j.title, j.description, j.location, j.salary, j.salary_value, j.mode, 
+                j.posted_date, j.company_id, u.name AS company_name
+         FROM jobs j
+         JOIN companies c ON j.company_id = c.id
+         JOIN users u ON c.id = u.id
+         WHERE j.id NOT IN (
+             SELECT job_id FROM applications WHERE seeker_id = ', seekerId, '
+         )
+         AND (j.title LIKE "%', searchTerm, '%" OR u.name LIKE "%', searchTerm, '%")
+         ORDER BY j.salary_value ', sortOrder
+    );
+
+    PREPARE stmt FROM @sql;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
+END //
+
+DELIMITER ;
+
+
+
+
+
+
 
 DELIMITER //
 CREATE PROCEDURE getAppliedJobs(IN seekerId INT)
@@ -84,6 +131,21 @@ BEGIN
     JOIN applications a ON j.id = a.job_id
     WHERE a.seeker_id = seekerId;
 END //
-
 DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE update_status (
+    IN app_id INT,
+    IN new_status VARCHAR(20)
+)
+BEGIN
+    UPDATE applications
+    SET status = new_status
+    WHERE id = app_id;
+END //
+DELIMITER ;
+
+DROP PROCEDURE getJobs;
+DROP PROCEDURE searchJobs;
 

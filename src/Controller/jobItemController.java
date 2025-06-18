@@ -29,8 +29,9 @@ public class jobItemController {
         this.skrID= skrID;
         jobView.listenApply(new applyWithdraw());
         getSetJobs();
-        
     }
+    
+
     public void open() {
         this.jobView.setVisible(true);
     }
@@ -40,22 +41,22 @@ public class jobItemController {
     }
     
     public void getSetJobs(){
-        if(job.getStatus().equals("Pending")){
-           jobView.Status.setForeground(Color.YELLOW);
-           jobView.apply.setText("Withdraw");
-           jobView.apply.setForeground(Color.RED);
-        }
-        else if(job.getStatus().equals("Accepted")){
-            jobView.Status.setForeground(Color.GREEN);
-             jobView.apply.setVisible(false);
-        }
-        else if(job.getStatus().equals("Rejected")){
-            jobView.Status.setForeground(Color.RED);
-            jobView.apply.setVisible(false);
-        }else{
-             jobView.Status.setVisible(false);
-        }
-                
+       
+            if (job.getStatus().equals("Pending")) {
+                jobView.Status.setForeground(Color.YELLOW);
+                jobView.apply.setText("Withdraw");
+                jobView.apply.setForeground(Color.RED);
+            } else if (job.getStatus().equals("Accepted")) {
+                jobView.Status.setForeground(Color.GREEN);
+                jobView.apply.setVisible(false);
+            } else if (job.getStatus().equals("Rejected")) {
+                jobView.Status.setForeground(Color.RED);
+                jobView.apply.setVisible(false);
+            } else {
+                jobView.Status.setVisible(false);
+            }
+        
+       
        jobView.Status.setText(job.getStatus());
         jobView.Title.setText(job.getTitle());
         jobView.Description.setText(job.getDescription());
@@ -65,6 +66,20 @@ public class jobItemController {
         jobView.cmpName.setText(job.getCompanyName());
         jobView.Salary.setText(job.getSalary());
         
+    }
+
+    private class delete implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(uDao.deleteJob(job.getId())){
+               JOptionPane.showMessageDialog(null, "Job Deleted ");
+               close();
+           }else{
+               JOptionPane.showMessageDialog(null, "Could not delete job");
+           }
+        }
+ 
     }
 
     private  class applyWithdraw implements ActionListener {

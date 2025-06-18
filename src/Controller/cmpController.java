@@ -263,7 +263,8 @@ public class cmpController {
         for (jobData job : jobs) {
             System.out.println("Job: " + job.getTitle());
             ourJobs jobPanel = new ourJobs();
-            new ourJobController(jobPanel, job);
+            ourJobController c = new ourJobController(jobPanel, job);
+            c.company();
             jobsContainer.add(jobPanel);
             jobsContainer.add(Box.createVerticalStrut(10));
         }

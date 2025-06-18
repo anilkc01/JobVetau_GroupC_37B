@@ -39,6 +39,7 @@ public class ourJobs extends javax.swing.JPanel {
         dollarIcon = new javax.swing.JLabel();
         viewApplications = new javax.swing.JButton();
         deleteJob = new javax.swing.JButton();
+        cmpName = new javax.swing.JLabel();
 
         setSize(new java.awt.Dimension(560, 200));
 
@@ -65,6 +66,8 @@ public class ourJobs extends javax.swing.JPanel {
         deleteJob.setForeground(new java.awt.Color(255, 0, 0));
         deleteJob.setText("Delete");
 
+        cmpName.setText("jLabel1");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -73,27 +76,30 @@ public class ourJobs extends javax.swing.JPanel {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(39, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(locationIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(5, 5, 5)
-                                .addComponent(Location)
-                                .addGap(90, 90, 90)
-                                .addComponent(Mode)
-                                .addGap(90, 90, 90)
-                                .addComponent(dollarIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(5, 5, 5)
-                                .addComponent(Salary)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(deleteJob))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(Title)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(viewApplications)))
+                        .addComponent(cmpName, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(Title)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(viewApplications)
                         .addGap(10, 10, 10))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(locationIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(Location)
+                        .addGap(90, 90, 90)
+                        .addComponent(Mode)
+                        .addGap(90, 90, 90)
+                        .addComponent(dollarIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(Salary)
+                        .addGap(32, 32, 32)
+                        .addComponent(deleteJob)))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,6 +108,8 @@ public class ourJobs extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Title)
                     .addComponent(viewApplications))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cmpName, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -114,8 +122,10 @@ public class ourJobs extends javax.swing.JPanel {
                             .addComponent(Location)))
                     .addComponent(dollarIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteJob))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap())
         );
+
+        cmpName.setVisible(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -131,7 +141,7 @@ public class ourJobs extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -142,11 +152,12 @@ public class ourJobs extends javax.swing.JPanel {
     private javax.swing.JLabel Mode;
     private javax.swing.JLabel Salary;
     private javax.swing.JLabel Title;
+    public javax.swing.JLabel cmpName;
     private javax.swing.JButton deleteJob;
     private javax.swing.JLabel dollarIcon;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel locationIcon;
-    private javax.swing.JButton viewApplications;
+    public javax.swing.JButton viewApplications;
     // End of variables declaration//GEN-END:variables
 
     public javax.swing.JLabel  Title(){return Title;}
@@ -155,7 +166,11 @@ public class ourJobs extends javax.swing.JPanel {
     public javax.swing.JLabel  Location(){return Location;}
     public javax.swing.JLabel  Salary(){return Salary;}
     
-     public void deleteJobListener(ActionListener listener) {
+    public void deleteJobListener(ActionListener listener) {
         deleteJob.addActionListener(listener);
+    }
+     
+    public void showApplications(ActionListener listener){
+        viewApplications.addActionListener(listener);
     }
 }

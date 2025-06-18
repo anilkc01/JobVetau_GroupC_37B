@@ -6,10 +6,13 @@
 package Controller;
 
 import Model.jobData;
+import View.Applications;
 import View.ourJobs;
 import dao.dao;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,9 +28,22 @@ public class ourJobController {
         this.jobView = jobView;
         this.job = job;
         getSetJobs();
-        jobView.deleteJobListener(new deleteJob());
+        this.jobView.deleteJobListener(new deleteJob());
+        this.jobView.showApplications(new showApplications());
         
     }
+    
+    public void admin(){
+        this.jobView.cmpName.setVisible(true);
+        this.jobView.viewApplications.setVisible(false);
+     
+    }
+    public void company(){
+        this.jobView.cmpName.setVisible(false);
+        this.jobView.viewApplications.setVisible(true);
+    }
+    
+    
     public void open() {
         this.jobView.setVisible(true);
     }
@@ -39,11 +55,33 @@ public class ourJobController {
     public void getSetJobs(){
         System.out.println("Setting job: " + job.getTitle());
         jobView.Title().setText(job.getTitle());
+        jobView.cmpName.setText(job.getCompanyName());
         System.out.println("Setting job: " + job.getDescription());
         jobView.Description().setText(job.getDescription());
         jobView.Mode().setText(job.getMode());
         jobView.Salary().setText(job.getSalary());
         jobView.Location().setText(job.getLocation());
+        
+    }
+
+    private  class showApplications implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           
+        Applications applicationsPanel = new Applications();
+        ApplicationsController controller = new ApplicationsController(applicationsPanel,job.getId()); 
+
+        java.awt.Window parentWindow = javax.swing.SwingUtilities.getWindowAncestor(jobView);
+
+        // Create a modal dialog with Applications panel
+        JDialog dialog = new JDialog((Frame) parentWindow, "Applicants for: " + job.getTitle(), true); // modal
+
+        dialog.getContentPane().add(applicationsPanel);
+        dialog.pack();
+        dialog.setLocationRelativeTo(parentWindow); // center on parent
+        dialog.setVisible(true);
+        }
         
     }
 

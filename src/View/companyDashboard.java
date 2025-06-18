@@ -280,6 +280,8 @@ public class companyDashboard extends javax.swing.JFrame {
         addJob.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         addJob.setLabel("Add Job");
 
+        jScrollPane1.setBackground(new java.awt.Color(161, 196, 247));
+        jScrollPane1.setBorder(null);
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         jScrollPane1.setViewportBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));

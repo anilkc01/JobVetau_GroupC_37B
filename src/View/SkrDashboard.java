@@ -5,6 +5,7 @@
  */
 package View;
 
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 
@@ -59,6 +60,8 @@ public class SkrDashboard extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jobList = new javax.swing.JPanel();
         jAToggle = new javax.swing.JButton();
+        search = new javax.swing.JTextField();
+        sort = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -259,6 +262,8 @@ public class SkrDashboard extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jScrollPane1.setBackground(new java.awt.Color(161, 196, 247));
+        jScrollPane1.setBorder(null);
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         jScrollPane1.setViewportBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -284,22 +289,45 @@ public class SkrDashboard extends javax.swing.JFrame {
         jAToggle.setFont(new java.awt.Font("Lucida Grande", 1, 15)); // NOI18N
         jAToggle.setText("My Applications");
 
+        search.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        search.setForeground(java.awt.Color.gray);
+        search.setText("search");
+        search.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                searchFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                searchFocusLost(evt);
+            }
+        });
+
+        sort.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        sort.setForeground(java.awt.Color.darkGray);
+        sort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "High-Low", "Low-High" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(130, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(sort, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                                .addComponent(jAToggle, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jAToggle, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 149, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(seekerProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
         );
@@ -311,15 +339,19 @@ public class SkrDashboard extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jAToggle, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jAToggle, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(sort, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 22, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(seekerProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10))
         );
@@ -340,25 +372,39 @@ public class SkrDashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LogOutActionPerformed
+    private void searchFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchFocusLost
+        if(search.getText().isEmpty()){
+            search.setText("search");
+            search.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_searchFocusLost
 
-    private void editSkrProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editSkrProfileActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editSkrProfileActionPerformed
+    private void searchFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchFocusGained
+        if(search.getText().equals("search")){
+            search.setText("");
+            search.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_searchFocusGained
 
-    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+    private void skrExperienceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skrExperienceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_deleteBtnActionPerformed
+    }//GEN-LAST:event_skrExperienceActionPerformed
 
     private void skrIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skrIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_skrIDActionPerformed
 
-    private void skrExperienceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skrExperienceActionPerformed
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_skrExperienceActionPerformed
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void editSkrProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editSkrProfileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editSkrProfileActionPerformed
+
+    private void LogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LogOutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -412,6 +458,7 @@ public class SkrDashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JPanel jobList;
+    public javax.swing.JTextField search;
     private javax.swing.JPanel seekerProfile;
     private javax.swing.JTextField skrAddress;
     private javax.swing.JTextField skrContact;
@@ -419,10 +466,11 @@ public class SkrDashboard extends javax.swing.JFrame {
     private javax.swing.JTextField skrEmail;
     private javax.swing.JTextField skrExperience;
     private javax.swing.JTextField skrID;
-    public javax.swing.JLabel skrImage;
+    private javax.swing.JLabel skrImage;
     private javax.swing.JLabel skrName;
     private javax.swing.JTextField skrPortfolio;
     private javax.swing.JTextField skrSpecialization;
+    public javax.swing.JComboBox<String> sort;
     // End of variables declaration//GEN-END:variables
 
     public javax.swing.JLabel skrImage(){return skrImage;}
@@ -455,5 +503,13 @@ public class SkrDashboard extends javax.swing.JFrame {
     
     public void toggleListener(ActionListener listener) {
         jAToggle.addActionListener(listener);
+    }
+
+    public javax.swing.JTextField getSearchField() {
+        return  search;
+    }
+
+    public javax.swing.JComboBox<String> getSortCombo() {
+        return sort;
     }
 }
