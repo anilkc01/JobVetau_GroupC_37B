@@ -4,6 +4,12 @@
  */
 package jobvetau_groupc_37b;
 
+import Controller.ApplicationsController;
+import Model.ApplicantData;
+import Model.ApplicantTableModel;
+import View.ButtonEditor;
+import View.ButtonRenderer;
+
 /**
  *
  * @author Dell
@@ -15,6 +21,11 @@ public class ApplicationView extends javax.swing.JFrame {
      */
     public ApplicationView() {
         initComponents();
+        ApplicationsController controller = new ApplicationsController();
+applicationTable.setModel(new ApplicantTableModel(ApplicantData.getDummyData()));
+applicationTable.setRowHeight(40);
+applicationTable.getColumn("Action").setCellRenderer(new ButtonRenderer());
+applicationTable.getColumn("Action").setCellEditor(new ButtonEditor(controller, applicationTable));
     }
 
     /**
@@ -28,14 +39,14 @@ public class ApplicationView extends javax.swing.JFrame {
 
         scrollPane1 = new java.awt.ScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        applicationTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        applicationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -76,7 +87,7 @@ public class ApplicationView extends javax.swing.JFrame {
                 "SN", "Name", "Exp.", "Action"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(applicationTable);
 
         scrollPane1.add(jScrollPane1);
 
@@ -165,11 +176,11 @@ public class ApplicationView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable applicationTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private java.awt.ScrollPane scrollPane1;
     // End of variables declaration//GEN-END:variables
 }
