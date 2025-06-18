@@ -15,6 +15,8 @@ public class CompCard extends javax.swing.JFrame {
      */
     public CompCard() {
         initComponents();
+        setTitle("Company Info Card"); 
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -127,6 +129,7 @@ public class CompCard extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        System.out.println("View Details button clicked!");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
