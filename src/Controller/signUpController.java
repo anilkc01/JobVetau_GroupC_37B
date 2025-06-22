@@ -45,39 +45,39 @@ public class signUpController {
                 String password = userView.getPassword();
 
                 if (name.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Name is required");
+                    JOptionPane.showMessageDialog(userView, "Name is required");
                     return;
                 }
                 if (username.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Username is required.");
+                    JOptionPane.showMessageDialog(userView, "Username is required.");
                     return;
                 }
                 if (email.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Email is required.");
+                    JOptionPane.showMessageDialog(userView, "Email is required.");
                     return;
                 }
                 if (number.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Phone number is required.");
+                    JOptionPane.showMessageDialog(userView, "Phone number is required.");
                     return;
                 }
                 if (address.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Address is required.");
+                    JOptionPane.showMessageDialog(userView, "Address is required.");
                     return;
                 }
                 if (password.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Password is required.");
+                    JOptionPane.showMessageDialog(userView, "Password is required.");
                     return;
                 }
                 if (password.equals("mismatch")) {
-                    JOptionPane.showMessageDialog(null, "Passwords do not match.");
+                    JOptionPane.showMessageDialog(userView, "Passwords do not match.");
                     return;
                 }
                 if (!email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
-                    JOptionPane.showMessageDialog(null, "Invalid email format.");
+                    JOptionPane.showMessageDialog(userView, "Invalid email format.");
                     return;
                 }
                 if (!number.matches("\\d{10}")) {
-                    JOptionPane.showMessageDialog(null, "Phone number must be 10 digits.");
+                    JOptionPane.showMessageDialog(userView, "Phone number must be 10 digits.");
                     return;
                 }
 
@@ -85,7 +85,7 @@ public class signUpController {
                 userData user = new userData(name, username, number, email, address, role, password);
                 String check = userDao.checkUser(user.getUsername());
                 if (!check.equals("null")) {
-                    JOptionPane.showMessageDialog(null, "Duplicate User");
+                    JOptionPane.showMessageDialog(userView, "Duplicate User");
                     return;
                 }else{
                     
@@ -98,7 +98,7 @@ public class signUpController {
                     
                 }
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(userView, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

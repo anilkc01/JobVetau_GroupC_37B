@@ -43,34 +43,34 @@ public class logInController {
                 String password = userView.getPass();
                 
                  if (username.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Username is required.");
+                    JOptionPane.showMessageDialog(userView, "Username is required.");
                     return;
                 }
                 if (password.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Password is required.");
+                    JOptionPane.showMessageDialog(userView, "Password is required.");
                     return;
                 }
-                String role = userDao.checkUser(username);
-                
-                if(role.equals("seeker")){
-                 SkrDashboard dashboard = new SkrDashboard();
-                    skrController c = new skrController(dashboard,userDao.logIn(username, password));
+                userData user = userDao.logIn(username, password);
+                if(user == null){
+                    JOptionPane.showMessageDialog(userView, "Invalid Credentials");
+                    return;
+                }
+                if(user.getRole().equals("seeker")){
+                    SkrDashboard dashboard = new SkrDashboard();
+                    skrController c = new skrController(dashboard,user.getId());
                     c.open();
                    
 
-                }else if(role.equals("company")){ 
+                }else if(user.getRole().equals("company")){ 
                     companyDashboard dashboard = new companyDashboard();
-                    cmpController c = new cmpController(dashboard,userDao.logIn(username, password));
+                    cmpController c = new cmpController(dashboard,user.getId());
                     c.open();
                     
-                }else if(role.equals("admin")){
+                }else if(user.getRole().equals("admin")){
                     adminDashboard dashbaord = new adminDashboard();
                     adminDashboardController c = new adminDashboardController(dashbaord);
                     c.open();
                     
-                }else{
-                    JOptionPane.showMessageDialog(null, "Invalid Credentials");
-                    return;
                 }
                 
                 close();

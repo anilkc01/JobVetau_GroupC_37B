@@ -89,12 +89,23 @@ public class ourJobController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-           if(uDao.deleteJob(job.getId())){
-               JOptionPane.showMessageDialog(null, "Job Deleted ");
-               close();
-           }else{
-               JOptionPane.showMessageDialog(null, "Could not delete job");
-           }
+            int response = JOptionPane.showConfirmDialog(
+                        jobView,
+                        "Are you sure you want to delete?",
+                        "Confirm Delete",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE
+                );
+
+            if (response == JOptionPane.YES_OPTION) {
+                if (uDao.deleteJob(job.getId())) {
+                    JOptionPane.showMessageDialog(null, "Job Deleted ");
+                    close();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Could not delete job");
+                }
+            }
+
         }
 
     }

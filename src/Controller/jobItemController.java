@@ -11,7 +11,9 @@ import dao.dao;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -43,7 +45,7 @@ public class jobItemController {
     public void getSetJobs(){
        
             if (job.getStatus().equals("Pending")) {
-                jobView.Status.setForeground(Color.YELLOW);
+                jobView.Status.setForeground(Color.decode("#F6BE00"));
                 jobView.apply.setText("Withdraw");
                 jobView.apply.setForeground(Color.RED);
             } else if (job.getStatus().equals("Accepted")) {
@@ -56,11 +58,11 @@ public class jobItemController {
                 jobView.Status.setVisible(false);
             }
         
-       
-       jobView.Status.setText(job.getStatus());
+        
+        jobView.Status.setText(job.getStatus());
         jobView.Title.setText(job.getTitle());
         jobView.Description.setText(job.getDescription());
-        jobView.Date.setText(job.getPostedDate());
+        jobView.Date.setText(job.getPostedDate().substring(0,9));
         jobView.Location.setText(job.getLocation());
         jobView.Mode.setText(job.getMode());
         jobView.cmpName.setText(job.getCompanyName());
@@ -72,14 +74,26 @@ public class jobItemController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(uDao.deleteJob(job.getId())){
-               JOptionPane.showMessageDialog(null, "Job Deleted ");
-               close();
-           }else{
-               JOptionPane.showMessageDialog(null, "Could not delete job");
-           }
+            int response = JOptionPane.showConfirmDialog(
+                        jobView,
+                        "Are you sure you want to delete?",
+                        "Confirm Delete",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE
+                );
+
+            if (response == JOptionPane.YES_OPTION) {
+
+                if (uDao.deleteJob(job.getId())) {
+                    JOptionPane.showMessageDialog(null, "Job Deleted ");
+                    close();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Could not delete job");
+                }
+            }
+
         }
- 
+
     }
 
     private  class applyWithdraw implements ActionListener {

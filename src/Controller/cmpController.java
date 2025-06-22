@@ -133,7 +133,10 @@ public class cmpController {
                 jobData newJob = new jobData(title,description,location,salary,mode);
                 newJob.setCompanyId(id);
                 if(userDao.addJob(newJob)){
+                    JOptionPane.showMessageDialog(jobsContainer, "Added Successfully");
                     loadJobs();
+                } else{
+                    JOptionPane.showMessageDialog(jobsContainer, "Couldnot Add Job");
                 }
 
                 
@@ -155,14 +158,18 @@ public class cmpController {
             );
 
             if (enteredPassword != null) {
-                if (enteredPassword.equals(company.getPassword())) { 
-                    userDao.deleteUser(id);
-                    Login registerForm = new Login();
-                    logInController c = new logInController(registerForm);
-                    c.open();
-                    close();
+                if (enteredPassword.equals(company.getPassword())) {
+                    if (userDao.deleteUser(id)) {
+                        Login registerForm = new Login();
+                        logInController c = new logInController(registerForm);
+                        c.open();
+                        close();
+                    } else {
+                        JOptionPane.showMessageDialog(jobsContainer, "Couldnot delete user");
+                    }
+
                 } else {
-                    JOptionPane.showMessageDialog(null, "Incorrect password. Deletion canceled.");
+                    JOptionPane.showMessageDialog(jobsContainer, "Incorrect password. Deletion canceled.");
                 }
             }
 
@@ -256,7 +263,7 @@ public class cmpController {
 
     public void loadJobs() {
         jobs = userDao.getOurJobs(id);
-        System.out.println("Number of jobs retrieved: " + jobs.size()); 
+        
         jobsContainer = userView.getPanel();
         jobsContainer.removeAll();
 

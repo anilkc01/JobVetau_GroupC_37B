@@ -19,8 +19,8 @@ import javax.swing.JOptionPane;
  * @author thismac
  */
 public class dao {
-    
-     public boolean signUp(userData user) {
+
+    public boolean signUp(userData user) {
         MySqlConnection mySql = new MySqlConnection();
         Connection conn1 = mySql.openConnection();
         String sql = "INSERT INTO users(name, uname, email, number, address, role, password) VALUES(?, ?, ?, ?, ?, ?, ?)";
@@ -37,10 +37,8 @@ public class dao {
             int rowsAffected = pstm.executeUpdate();
             System.out.println(rowsAffected);
             if (rowsAffected > 0) {
-                JOptionPane.showMessageDialog(null, "Signup successful");
                 return true;
-            } else{
-                JOptionPane.showMessageDialog(null, "Signup Failed");
+            } else {
                 return false;
             }
         } catch (SQLException ex) {
@@ -49,10 +47,9 @@ public class dao {
         } finally {
             mySql.closeConnection(conn1);
         }
-        return false; 
+        return false;
     }
-    
-    
+
     public String checkUser(String userName) {
         MySqlConnection mySql = new MySqlConnection();
         Connection conn2 = mySql.openConnection();
@@ -61,12 +58,11 @@ public class dao {
             pstmt.setString(1, userName);
             ResultSet result = pstmt.executeQuery();
             if (result.next()) {
-                
                 return result.getString("role");
             } else {
                 return "null";
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(dao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -74,9 +70,8 @@ public class dao {
         }
         return "null";
     }
-    
-    
-    public int logIn(String username, String password) {
+
+    public userData logIn(String username, String password) {
         MySqlConnection mySql = new MySqlConnection();
         Connection conn1 = mySql.openConnection();
         String sql = "SELECT * FROM users WHERE uname = ? AND password = ?";
@@ -84,16 +79,22 @@ public class dao {
         try (PreparedStatement pstm = conn1.prepareStatement(sql)) {
             pstm.setString(1, username);
             pstm.setString(2, password);
-            ResultSet rs = pstm.executeQuery(); 
+            ResultSet rs = pstm.executeQuery();
 
             if (rs.next()) {
-                // Login successful
-                JOptionPane.showMessageDialog(null, "Login successful");
-                return rs.getInt("id");
+                userData user = new userData(
+                        rs.getString("name"),
+                        rs.getString("uname"),
+                        rs.getString("number"),
+                        rs.getString("email"),
+                        rs.getString("address"),
+                        rs.getString("role"),
+                        rs.getString("password")
+                );
+                user.setId(rs.getInt("id"));
+                return user;
             } else {
-                // Login failed
-                JOptionPane.showMessageDialog(null, "Login failed: Invalid username or password");
-                return 0;
+                return null;
             }
 
         } catch (SQLException ex) {
@@ -102,10 +103,10 @@ public class dao {
         } finally {
             mySql.closeConnection(conn1);
         }
-        
-        return 0;
+
+        return null;
     }
-    
+
     public companyData getCompanyData(int id) {
         MySqlConnection mySql = new MySqlConnection();
         Connection conn1 = mySql.openConnection();
@@ -113,13 +114,13 @@ public class dao {
         String sql = "SELECT u.name, u.uname, u.number, u.email, u.address, u.role, u.password, "
                 + "c.photo, c.sector, c.employees, c.ceo, c.website,c.regNo, c.service "
                 + "FROM users u LEFT JOIN companies c ON u.id = c.id WHERE u.id = ?";
-       
+
         try (PreparedStatement pstm = conn1.prepareStatement(sql)) {
             pstm.setInt(1, id);
             ResultSet rs = pstm.executeQuery();
 
             if (rs.next()) {
-                
+
                 String name = rs.getString("name");
                 String username = rs.getString("uname");
                 String number = rs.getString("number");
@@ -127,7 +128,6 @@ public class dao {
                 String address = rs.getString("address");
                 String role = rs.getString("role");
                 String password = rs.getString("password");
-               
 
                 // Company table fields may be null
                 String photo = rs.getString("photo");
@@ -137,15 +137,13 @@ public class dao {
                 String website = rs.getString("website");
                 String service = rs.getString("service");
                 String regNo = rs.getString("regNo");
-                
+
                 companyData cData = new companyData(name, username, number, email, address, role, password,
                         photo, sector, employees, ceo, website, service, regNo);
                 cData.setId(id);
-                
+
                 return cData;
-            } else {
-                JOptionPane.showMessageDialog(null, "No user found with the given ID");
-            }
+            } 
 
         } catch (SQLException ex) {
             Logger.getLogger(dao.class.getName()).log(Level.SEVERE, null, ex);
@@ -165,10 +163,7 @@ public class dao {
         String updateCompanySql = "UPDATE companies SET photo=?, regNo=?, sector=?, employees=?, ceo=?, website=?, service=? WHERE id=?";
         String insertCompanySql = "INSERT INTO companies (id, photo, regNo, sector, employees, ceo, website, service) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         System.out.println(company.getId());
-        try (PreparedStatement userStmt = conn.prepareStatement(userSql);
-                PreparedStatement checkStmt = conn.prepareStatement(checkSql);
-                PreparedStatement updateStmt = conn.prepareStatement(updateCompanySql);
-                PreparedStatement insertStmt = conn.prepareStatement(insertCompanySql)) {
+        try (PreparedStatement userStmt = conn.prepareStatement(userSql); PreparedStatement checkStmt = conn.prepareStatement(checkSql); PreparedStatement updateStmt = conn.prepareStatement(updateCompanySql); PreparedStatement insertStmt = conn.prepareStatement(insertCompanySql)) {
 
             // Update users table
             userStmt.setString(1, company.getName());
@@ -248,8 +243,6 @@ public class dao {
                 sData.setId(id);
 
                 return sData;
-            } else {
-                JOptionPane.showMessageDialog(null, "No user found with the given ID");
             }
 
         } catch (SQLException ex) {
@@ -261,7 +254,7 @@ public class dao {
 
         return null;
     }
-    
+
     public void updateSeeker(seekerData seeker) {
         MySqlConnection mySql = new MySqlConnection();
         Connection conn = mySql.openConnection();
@@ -272,10 +265,7 @@ public class dao {
         String insertSeekerSql = "INSERT INTO seekers (id, photo, idNo, DOB, experience, specialization, protfolio) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (
-                PreparedStatement userStmt = conn.prepareStatement(userSql);
-                PreparedStatement checkStmt = conn.prepareStatement(checkSql);
-                PreparedStatement updateStmt = conn.prepareStatement(updateSeekerSql);
-                PreparedStatement insertStmt = conn.prepareStatement(insertSeekerSql)) {
+                PreparedStatement userStmt = conn.prepareStatement(userSql); PreparedStatement checkStmt = conn.prepareStatement(checkSql); PreparedStatement updateStmt = conn.prepareStatement(updateSeekerSql); PreparedStatement insertStmt = conn.prepareStatement(insertSeekerSql)) {
             // Update users table
             userStmt.setString(1, seeker.getName());
             userStmt.setString(2, seeker.getUsername());
@@ -320,7 +310,7 @@ public class dao {
         }
     }
 
-    public void deleteUser(int id) {
+    public boolean deleteUser(int id) {
         MySqlConnection mySql = new MySqlConnection();
         Connection conn = mySql.openConnection();
 
@@ -331,9 +321,9 @@ public class dao {
             int rowsAffected = userStmt.executeUpdate();
 
             if (rowsAffected > 0) {
-                JOptionPane.showMessageDialog(null, "User deleted successfully.");
+                return true;
             } else {
-                JOptionPane.showMessageDialog(null, "No user found with the given ID.");
+                return false;
             }
 
         } catch (SQLException e) {
@@ -342,6 +332,7 @@ public class dao {
         } finally {
             mySql.closeConnection(conn);
         }
+        return false;
     }
 
     public boolean addJob(jobData job) {
@@ -360,10 +351,8 @@ public class dao {
             int rowsAffected = stmt.executeUpdate();
             System.out.println(rowsAffected);
             if (rowsAffected > 0) {
-                JOptionPane.showMessageDialog(null, "Added Successfully");
                 return true;
-            } else{
-                JOptionPane.showMessageDialog(null, " Failed to Add Job");
+            } else {
                 return false;
             }
         } catch (SQLException e) {
@@ -400,10 +389,6 @@ public class dao {
                 jobList.add(job);
             }
 
-            if (jobList.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "No jobs found for the given company ID");
-            }
-
         } catch (SQLException ex) {
             Logger.getLogger(dao.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "An error occurred while fetching job data");
@@ -421,13 +406,13 @@ public class dao {
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, jobId);
             int rowsAffected = pstmt.executeUpdate();
-            return rowsAffected > 0; // Return true if at least one row was deleted
+            return rowsAffected > 0; 
         } catch (SQLException e) {
             System.err.println("Error deleting job with ID " + jobId + ": " + e.getMessage());
-            return false; // Return false on error
+            return false; 
         }
     }
-    
+
     public boolean addApplication(applicationData application) {
         MySqlConnection mySql = new MySqlConnection();
         Connection conn = mySql.openConnection();
@@ -452,7 +437,7 @@ public class dao {
 
         return success;
     }
-    
+
     public ArrayList<appliedJobData> getJobs(int seekerId, String sortOrder) {
         ArrayList<appliedJobData> jobList = new ArrayList<>();
         MySqlConnection mySql = new MySqlConnection();
@@ -492,7 +477,6 @@ public class dao {
 
         return jobList;
     }
-
 
     public ArrayList<appliedJobData> searchJobs(int seekerId, String searchTerm, String sortOrder) {
         ArrayList<appliedJobData> jobList = new ArrayList<>();
@@ -534,7 +518,6 @@ public class dao {
 
         return jobList;
     }
-
 
     public ArrayList<appliedJobData> getAppliedJobs(int seekerId) {
         ArrayList<appliedJobData> jobList = new ArrayList<>();
@@ -599,16 +582,15 @@ public class dao {
 
         return success;
     }
-    
+
     public ArrayList<companyData> getAllCompanies() {
-          MySqlConnection mySql = new MySqlConnection();
+        MySqlConnection mySql = new MySqlConnection();
         Connection conn = mySql.openConnection();
         ArrayList<companyData> companies = new ArrayList<>();
         String query = "SELECT u.id, c.photo, u.name, u.email, u.number, u.address "
                 + "FROM users u JOIN companies c ON u.id = c.id";
 
-        try (PreparedStatement stmt = conn.prepareStatement(query);
-                ResultSet rs = stmt.executeQuery()) {
+        try (PreparedStatement stmt = conn.prepareStatement(query); ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
                 companyData company = new companyData(
@@ -628,26 +610,25 @@ public class dao {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             mySql.closeConnection(conn);
         }
         return companies;
     }
 
     public ArrayList<seekerData> getAllSeekers() {
-          MySqlConnection mySql = new MySqlConnection();
+        MySqlConnection mySql = new MySqlConnection();
         Connection conn = mySql.openConnection();
         ArrayList<seekerData> seekers = new ArrayList<>();
         String query = "SELECT u.id, s.photo, u.name, u.email, u.number, u.address "
                 + "FROM users u JOIN seekers s ON u.id = s.id";
 
-        try (PreparedStatement stmt = conn.prepareStatement(query);
-                ResultSet rs = stmt.executeQuery()) {
+        try (PreparedStatement stmt = conn.prepareStatement(query); ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
                 seekerData seeker = new seekerData(
                         rs.getString("photo"),
-                        "", "", "", "", "", // extra seeker fields
+                        "", "", "", "", "", 
                         rs.getString("name"),
                         "", // username
                         rs.getString("number"),
@@ -662,7 +643,7 @@ public class dao {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             mySql.closeConnection(conn);
         }
         return seekers;
@@ -676,8 +657,7 @@ public class dao {
                 + "FROM jobs j JOIN companies c ON j.company_id = c.id "
                 + "JOIN users u ON c.id = u.id";
 
-        try (PreparedStatement stmt = conn.prepareStatement(query);
-                ResultSet rs = stmt.executeQuery()) {
+        try (PreparedStatement stmt = conn.prepareStatement(query); ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
                 jobData job = new jobData(
@@ -694,7 +674,7 @@ public class dao {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             mySql.closeConnection(conn);
         }
         return jobs;
@@ -703,7 +683,7 @@ public class dao {
     public ArrayList<applicationData> getApplications(int jobId) {
         MySqlConnection mySql = new MySqlConnection();
         Connection conn = mySql.openConnection();
-        
+
         ArrayList<applicationData> applications = new ArrayList<>();
         String sql = "SELECT * FROM applications WHERE job_id = ?";
 
@@ -713,9 +693,9 @@ public class dao {
 
             while (rs.next()) {
                 applicationData app = new applicationData(
-                    rs.getInt("seeker_id"),
-                    rs.getInt("job_id"),
-                    rs.getString("status")
+                        rs.getInt("seeker_id"),
+                        rs.getInt("job_id"),
+                        rs.getString("status")
                 );
                 app.setId(rs.getInt("id"));
                 applications.add(app);
@@ -727,7 +707,7 @@ public class dao {
 
         return applications;
     }
-        
+
     public boolean updateStatus(int id, String status) {
 
         MySqlConnection mySql = new MySqlConnection();

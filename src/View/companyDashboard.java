@@ -81,7 +81,6 @@ public class companyDashboard extends javax.swing.JFrame {
         cmpName.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         cmpName.setText("Company Name");
 
-        LogOut.setBackground(new java.awt.Color(255, 255, 255));
         LogOut.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         LogOut.setForeground(new java.awt.Color(255, 51, 51));
         LogOut.setText("LogOut");
@@ -283,8 +282,6 @@ public class companyDashboard extends javax.swing.JFrame {
         jScrollPane1.setBackground(new java.awt.Color(161, 196, 247));
         jScrollPane1.setBorder(null);
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        jScrollPane1.setViewportBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jScrollPane1.setMinimumSize(new java.awt.Dimension(675, 475));
         jScrollPane1.setPreferredSize(new java.awt.Dimension(510, 200));
         jScrollPane1.setSize(new java.awt.Dimension(510, 200));
@@ -322,9 +319,9 @@ public class companyDashboard extends javax.swing.JFrame {
                                 .addComponent(addJob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addComponent(companyProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
         );

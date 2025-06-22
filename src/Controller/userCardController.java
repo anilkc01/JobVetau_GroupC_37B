@@ -10,6 +10,7 @@ import dao.dao;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -69,9 +70,20 @@ public class userCardController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-           dao uDao = new dao();
-           uDao.deleteUser(id);
-           close();
+            int response = JOptionPane.showConfirmDialog(
+                        card,
+                        "Are you sure you want to delete?",
+                        "Confirm Delete",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE
+                );
+
+             if (response == JOptionPane.YES_OPTION) {
+                dao uDao = new dao();
+                uDao.deleteUser(id);
+                close();
+            }
+
         }
 
     }

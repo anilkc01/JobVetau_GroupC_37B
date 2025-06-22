@@ -11,6 +11,7 @@ CREATE TABLE users (
     password VARCHAR(255)
 );
 
+
 CREATE TABLE companies (
     id INT PRIMARY KEY,
     photo VARCHAR(255),
@@ -87,7 +88,7 @@ END //
 
 DELIMITER ;
 
-
+DELIMITER //
 CREATE PROCEDURE searchJobs(
     IN seekerId INT,
     IN searchTerm VARCHAR(100),
@@ -95,7 +96,7 @@ CREATE PROCEDURE searchJobs(
 )
 BEGIN
     SET @sql = CONCAT(
-        'SELECT j.id, j.title, j.description, j.location, j.salary, j.salary_value, j.mode, 
+        'SELECT j.id, j.title, j.description, j.location, j.salary, j.mode, 
                 j.posted_date, j.company_id, u.name AS company_name
          FROM jobs j
          JOIN companies c ON j.company_id = c.id
@@ -104,15 +105,15 @@ BEGIN
              SELECT job_id FROM applications WHERE seeker_id = ', seekerId, '
          )
          AND (j.title LIKE "%', searchTerm, '%" OR u.name LIKE "%', searchTerm, '%")
-         ORDER BY j.salary_value ', sortOrder
+         ORDER BY CAST(REGEXP_REPLACE(j.salary, ''[^0-9]'', '''') AS UNSIGNED) ', sortOrder
     );
 
     PREPARE stmt FROM @sql;
     EXECUTE stmt;
     DEALLOCATE PREPARE stmt;
 END //
-
 DELIMITER ;
+
 
 
 
@@ -146,6 +147,5 @@ BEGIN
 END //
 DELIMITER ;
 
-DROP PROCEDURE getJobs;
-DROP PROCEDURE searchJobs;
+
 
