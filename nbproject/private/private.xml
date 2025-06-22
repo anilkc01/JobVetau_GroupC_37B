@@ -7,7 +7,6 @@
             <file>file:/Users/thismac/Documents/NetBeansProjects/JobVetau_GroupC_37B/src/View/companyDashboard.java</file>
             <file>file:/Users/thismac/Documents/NetBeansProjects/JobVetau_GroupC_37B/src/View/ourJobs.java</file>
             <file>file:/Users/thismac/Documents/NetBeansProjects/JobVetau_GroupC_37B/src/sql/jobVetau.sql</file>
-            <file>file:/Users/thismac/Documents/NetBeansProjects/JobVetau_GroupC_37B/src/View/adminDashboard.java</file>
             <file>file:/Users/thismac/Documents/NetBeansProjects/JobVetau_GroupC_37B/src/jobvetau_groupc_37b/JobVetau_GroupC_37B.java</file>
             <file>file:/Users/thismac/Documents/NetBeansProjects/JobVetau_GroupC_37B/src/Model/seekerData.java</file>
             <file>file:/Users/thismac/Documents/NetBeansProjects/JobVetau_GroupC_37B/src/Model/jobData.java</file>
@@ -20,6 +19,7 @@
             <file>file:/Users/thismac/Documents/NetBeansProjects/JobVetau_GroupC_37B/src/dao/dao.java</file>
             <file>file:/Users/thismac/Documents/NetBeansProjects/JobVetau_GroupC_37B/src/Model/userData.java</file>
             <file>file:/Users/thismac/Documents/NetBeansProjects/JobVetau_GroupC_37B/src/Controller/cmpController.java</file>
+            <file>file:/Users/thismac/Documents/NetBeansProjects/JobVetau_GroupC_37B/src/Controller/ourJobController.java</file>
         </group>
     </open-files>
 </project-private>

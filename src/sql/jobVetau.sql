@@ -48,7 +48,6 @@ CREATE TABLE jobs (
     FOREIGN KEY (company_id) REFERENCES companies(id) ON DELETE CASCADE
 );
 
-ALTER TABLE jobs DROP COLUMN salary_value;
 
 
 CREATE TABLE applications (
@@ -59,7 +58,6 @@ CREATE TABLE applications (
     FOREIGN KEY (seeker_id) REFERENCES seekers(id) ON DELETE CASCADE,
     FOREIGN KEY (job_id) REFERENCES jobs(id) ON DELETE CASCADE
 );
-
 
 
 DELIMITER //
@@ -113,12 +111,6 @@ BEGIN
     DEALLOCATE PREPARE stmt;
 END //
 DELIMITER ;
-
-
-
-
-
-
 
 
 DELIMITER //
