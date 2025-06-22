@@ -49,7 +49,6 @@ CREATE TABLE jobs (
 );
 
 
-
 CREATE TABLE applications (
     id INT PRIMARY KEY AUTO_INCREMENT,
     seeker_id INT NOT NULL,
@@ -60,6 +59,7 @@ CREATE TABLE applications (
 );
 
 
+-- Procedure to get all jobs posted by a company
 DELIMITER //
 
 CREATE PROCEDURE getJobs(
@@ -113,6 +113,7 @@ END //
 DELIMITER ;
 
 
+-- procedure to get applied jobs by a seeker
 DELIMITER //
 CREATE PROCEDURE getAppliedJobs(IN seekerId INT)
 BEGIN
