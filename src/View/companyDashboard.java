@@ -76,7 +76,6 @@ public class companyDashboard extends javax.swing.JFrame {
         companyProfile.setBackground(new java.awt.Color(255, 255, 255));
 
         cmpLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/cmpLogo.png"))); // NOI18N
-        cmpLogo.setFocusTraversalKeysEnabled(false);
 
         cmpName.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         cmpName.setText("Company Name");
@@ -278,13 +277,17 @@ public class companyDashboard extends javax.swing.JFrame {
 
         addJob.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         addJob.setLabel("Add Job");
+        addJob.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addJobActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setBackground(new java.awt.Color(161, 196, 247));
         jScrollPane1.setBorder(null);
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setMinimumSize(new java.awt.Dimension(675, 475));
         jScrollPane1.setPreferredSize(new java.awt.Dimension(510, 200));
-        jScrollPane1.setSize(new java.awt.Dimension(510, 200));
 
         jobList.setBackground(new java.awt.Color(161, 195, 247));
         jobList.setPreferredSize(new java.awt.Dimension(0, 0));
@@ -386,6 +389,10 @@ public class companyDashboard extends javax.swing.JFrame {
     private void cmpServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmpServiceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmpServiceActionPerformed
+
+    private void addJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJobActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addJobActionPerformed
 
     /**
      * @param args the command line arguments
