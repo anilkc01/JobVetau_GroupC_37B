@@ -47,6 +47,8 @@ CREATE TABLE jobs (
     FOREIGN KEY (company_id) REFERENCES companies(id) ON DELETE CASCADE
 );
 
+ALTER TABLE jobs DROP COLUMN salary_value;
+
 
 CREATE TABLE applications (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -67,7 +69,7 @@ CREATE PROCEDURE getJobs(
 )
 BEGIN
     SET @sql = CONCAT(
-        'SELECT j.id, j.title, j.description, j.location, j.salary, j.salary_value, j.mode, 
+        'SELECT j.id, j.title, j.description, j.location, j.salary, j.mode, 
                 j.posted_date, j.company_id, u.name AS company_name
          FROM jobs j
          JOIN companies c ON j.company_id = c.id
@@ -75,7 +77,7 @@ BEGIN
          WHERE j.id NOT IN (
              SELECT job_id FROM applications WHERE seeker_id = ', seekerId, '
          )
-         ORDER BY j.salary_value ', sortOrder
+         ORDER BY CAST(REGEXP_REPLACE(j.salary, ''[^0-9]'', '''') AS UNSIGNED) ', sortOrder
     );
 
     PREPARE stmt FROM @sql;
@@ -85,8 +87,6 @@ END //
 
 DELIMITER ;
 
-
-DELIMITER //
 
 CREATE PROCEDURE searchJobs(
     IN seekerId INT,
