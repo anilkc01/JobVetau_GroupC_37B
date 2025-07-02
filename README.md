@@ -1,8 +1,3 @@
-Thanks! I’ll now generate a detailed README for your JobVetau job portal project hosted on GitHub. This README will include an overview, features, setup guide, and relevant links to your prototypes and documentation.
-
-I’ll let you know as soon as it's ready for review.
-
-
 # JobVetau
 
 *JobVetau – Connecting Employers and Job Seekers in Nepal*
