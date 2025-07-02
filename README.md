@@ -98,11 +98,11 @@ Key project resources and links:
 
 ## Team Members and Roles
 
-* **Tek Bahadur KC** – Team Lead; responsible for overall architecture and back-end (database) development.
-* **Krijal Shrestha** – UI/UX Designer and front-end (Swing GUI) developer.
-* **Adwitiya Bahadur Pandey** – Back-end developer (application logic and database integration).
-* **Sampada Shahi Thakuri** – Quality assurance, testing, and documentation.
-* **Pukar Bogati** – Full-stack developer (integrating front-end and back-end).
+* **Tek Bahadur KC** – Team Leader; responsible for overall architecture and back-end (database) development.
+* **Krijal Shrestha** – Developer
+* **Adwitiya Bahadur Pandey** – Developer
+* **Sampada Shahi Thakuri** – Developer
+* **Pukar Bogati** –Developer
 
 Each member collaborated across design, development, and testing to deliver the project successfully.
 
