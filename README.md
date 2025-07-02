@@ -107,4 +107,4 @@ Each member collaborated across design, development, and testing to deliver the 
 
 ## Contact Info
 
-For questions or collaboration, contact the team lead: **Tek Bahadur KC** (email: *[tek.bahadur@softwarica.com.np](mailto:tek.bahadur@softwarica.com.np)* or the Softwarica College helpdesk).
+For questions or collaboration, contact the team lead: **Tek Bahadur KC** (email: *[tek.bahadur@softwarica.com.np](mailto:tek.bahadur@softwarica.com.np)*
