@@ -90,7 +90,7 @@ Key project resources and links:
 * **Figma Prototypes:** [JobVetau UI Designs](https://www.figma.com/design/LQlROyF7qvpajOGwaVkAUz/JobVetau) – all low/high-fidelity mockups (login, dashboards, forms).
 * **Development Log:** [Google Sheets Task Log](https://docs.google.com/spreadsheets/d/1qVnMe574ludyJ1tVzQh_cmwCGJQ7vaqYEEzjJvo5ra4/edit) – records of tasks, time tracking, and sprint outcomes.
 * **Source Code:** [GitHub Repository](https://github.com/anilkc01/JobVetau_GroupC_37B) – contains all code and commit history.
-* * **Youtube Video:** [GitHub Repository](https://youtu.be/P63ZXvjmRbA) – contains explanantion of the project.
+* **Youtube Video:** [Youtube Video](https://youtu.be/P63ZXvjmRbA) – contains explanantion of the project.
 
 ## Team Members and Roles
 
